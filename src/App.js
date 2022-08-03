@@ -6,6 +6,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import Nav from './components/Nav';
 import BlogForm from './components/BlogForm';
+import Blog from './components/Blog';
 
 function App() {
   return (
@@ -13,13 +14,13 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/blogs" element={<BlogList />} />
-        <Route path="/blogs/create" element={<BlogForm />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="blogs" element={<BlogList />} />
+        <Route path="blogs/create" element={<BlogForm />} />
+        <Route path="blogs/:blogId" element={<Blog />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );
 };
-//continue with building article form
 export default App;
