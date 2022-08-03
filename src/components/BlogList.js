@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react';
 import logo from '../logo.svg';
 import { Buffer } from 'buffer';
 import '../App.css';
+import { Link } from 'react-router-dom';
 
 function BlogList() {
   const [apiResponse, setApiResponse] = useState({
     article_list: [],
     isLoading: true,
-    // image: undefined,
     error: undefined,
   });
 
   async function callAPI() {
     try {
-      const response = await fetch('/blogs');
+      const response = await fetch('blogs');
       const res = await response.json();
       setApiResponse({
         article_list: res.article_list,
@@ -39,9 +39,11 @@ function BlogList() {
     let buffer = new Buffer.from(post.image.data.data).toString('base64');
     let mimetype = post.image.contentType
     return (
-      <div key={index}>
+      <div key={post._id}>
         <h4>
-          <a href={post.url}>{post.title}</a>
+        <Link className="nav-link" to={post.url}>
+          {post.title}        
+        </Link>
         </h4>
         <p>{post.summary}</p>
         <p>{post.date}</p>
