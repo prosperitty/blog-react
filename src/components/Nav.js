@@ -17,6 +17,9 @@ function Nav() {
         <Link className="nav-link" to="signup">
           signup
         </Link>
+        <Link className="nav-link" to="blogs/create">
+          new article
+        </Link>
       </div>
     </nav>
   );
