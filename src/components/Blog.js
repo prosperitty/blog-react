@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Buffer } from 'buffer';
+import { Link } from 'react-router-dom';
 import logo from '../logo.svg';
 import '../App.css';
 
 function Blog() {
-  const [apiResponse, setApiResponse] = useState({article: undefined, isLoading: true, error: undefined});
+  const [apiResponse, setApiResponse] = useState({article: undefined, comments: [] ,isLoading: true, error: undefined});
   const [blogId, setBlogId] = useState(useParams())
-  console.log(blogId);
 
   useEffect(() => {
     fetch(`${blogId.blogId}`)
       .then(res => res.json())
       .then(res => setApiResponse({
         article: res.article,
+        comments: res.comments,
         isLoading: false,
         error: res.error
       }))
@@ -27,6 +28,15 @@ function Blog() {
     return `data:${mimetype};base64,${buffer}`
   }
 
+  //does not work when apiresponse.comments is undefined
+  //works when apiResponse.comments has an empty array 
+  const commentList = apiResponse.comments.map((comment, index) => (
+    <div>
+      <p>{comment.date}</p>
+      <p>{comment.comment}</p>
+    </div>
+  ))
+
   if (apiResponse.isLoading) {
     return (
       <div className="App">
@@ -37,7 +47,6 @@ function Blog() {
     </div>
     );
   } else {
-
     return (
       <div className="App">
         <header className="App-header">
@@ -46,7 +55,13 @@ function Blog() {
           <p>{apiResponse.article.summary}</p>
           <img src={renderImage(apiResponse.article)} alt="article" />
         </header>
-        <section>{apiResponse.article.content}</section>
+        <main>{apiResponse.article.content}</main>
+        <section>
+          <Link to="comments/create">
+            new comment
+          </Link>
+          {commentList}
+        </section>
       </div>
     );
   }
