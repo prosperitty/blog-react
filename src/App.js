@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Nav from './components/Nav';
 import BlogForm from './components/BlogForm';
 import Blog from './components/Blog';
+import CommentForm from './components/CommentForm';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="blogs" element={<BlogList />} />
         <Route path="blogs/create" element={<BlogForm />} />
         <Route path="blogs/:blogId" element={<Blog />} />
+        <Route path="blogs/:blogId/comments/create" element={<CommentForm />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
       </Routes>
