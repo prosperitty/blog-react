@@ -8,6 +8,7 @@ import Nav from './components/Nav';
 import BlogForm from './components/BlogForm';
 import Blog from './components/Blog';
 import CommentForm from './components/CommentForm';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="blogs/:blogId/comments/create" element={<CommentForm />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
+        <Route path="/users/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
