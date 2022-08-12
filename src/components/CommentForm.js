@@ -9,7 +9,7 @@ function CommentForm() {
       .then((res) => res.json())
       .then((res) => setApiResponse(res))
       .catch((err) => err);
-  }, [setApiResponse]);
+  }, []);
 
   return (
     <div className="App">
@@ -24,9 +24,7 @@ function CommentForm() {
           ></textarea>
         </div>
         <div>
-          <button type="submit">
-            Submit
-          </button>
+          <button type="submit">Submit</button>
         </div>
       </form>
     </div>

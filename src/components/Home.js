@@ -24,10 +24,10 @@ class Home extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1>Home</h1>
+          <h1>{this.state.apiResponse.title}</h1>
         </header>
         <main>
-          <p>{this.state.apiResponse.message}</p>
+          <p>{this.state.apiResponse.title}</p>
         </main>
       </div>
     );

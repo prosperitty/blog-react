@@ -9,7 +9,7 @@ function BlogForm() {
       .then((res) => res.json())
       .then((res) => setApiResponse(res))
       .catch((err) => err);
-  }, [setApiResponse]);
+  }, []);
 
   return (
     <div className="App">

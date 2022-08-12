@@ -37,31 +37,29 @@ function BlogList() {
 
   const posts = apiResponse.article_list.map((post, index) => {
     let buffer = new Buffer.from(post.image.data.data).toString('base64');
-    let mimetype = post.image.contentType
+    let mimetype = post.image.contentType;
     return (
       <div key={post._id}>
         <h4>
-        <Link className="nav-link" to={post.url}>
-          {post.title}        
-        </Link>
+          <Link className="nav-link" to={post.url}>
+            {post.title}
+          </Link>
         </h4>
         <p>{post.summary}</p>
         <p>{post.date}</p>
-        <img alt='article' src={`data:${mimetype};base64,${buffer}`} />
+        <img alt="article" src={`data:${mimetype};base64,${buffer}`} />
       </div>
-    )
+    );
   });
-
-  // src={`data:${post.image.contentType};base64, ${post.image.data.data.toString('base64')}`}
 
   if (apiResponse.isLoading) {
     return (
       <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Loading...</p>
-      </header>
-    </div>
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>Loading...</p>
+        </header>
+      </div>
     );
   } else {
     return (
