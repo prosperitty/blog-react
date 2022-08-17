@@ -8,43 +8,55 @@ function Nav() {
   if (!isAuthenticated) {
     return (
       <nav className="nav">
-        <div className="logo">Blog</div>
-        <div>
-          <Link className="nav-link" to="/">
-            home
-          </Link>
-          <Link className="nav-link" to="blogs">
-            blogs
-          </Link>
-          <Link className="nav-link" to="login">
-            login
-          </Link>
-          <Link className="nav-link" to="signup">
-            signup
-          </Link>
-          <Link className="nav-link" to="blogs/create">
-            new article
-          </Link>
+        <div className="nav-container">
+          <div>
+            <Link className="logo" to="/">
+              Event Horizon
+            </Link>
+            <Link className="nav-link" to="/">
+              Home
+            </Link>
+            <Link className="nav-link" to="blogs">
+              Blogs
+            </Link>
+          </div>
+          <div>
+            <Link className="nav-link" to="login">
+              Login
+            </Link>
+            <Link className="nav-link" to="signup">
+              Register
+            </Link>
+          </div>
         </div>
       </nav>
     );
   } else {
     return (
       <nav className="nav">
-        <div className="logo">Blog</div>
-        <div>
-          <Link className="nav-link" to="/">
-            home
-          </Link>
-          <Link className="nav-link" to="blogs">
-            blogs
-          </Link>
-          <Link className="nav-link" to="blogs/create">
-            new article
-          </Link>
-          <Link className="nav-link" to="users/profile">
-            profile
-          </Link>
+        <div className="nav-container">
+          <div>
+            <Link className="logo" to="/">
+              Event Horizon
+            </Link>
+            <Link className="nav-link" to="/">
+              Home
+            </Link>
+            <Link className="nav-link" to="blogs">
+              Blogs
+            </Link>
+          </div>
+          <div>
+            <Link className="nav-link" to="blogs/create">
+              New Article
+            </Link>
+            <Link className="nav-link" to="users/profile">
+              Profile
+            </Link>
+            <Link className="nav-link" to="users/logout">
+              Logout
+            </Link>
+          </div>
         </div>
       </nav>
     );
