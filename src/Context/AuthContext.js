@@ -10,10 +10,12 @@ function Authenticate({ children }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    Auth().then((data) => {
+    Auth.isAuthenticated()
+    .then((data) => {
       setIsAuthenticated(data.isAuthenticated);
       setIsLoading(false);
-    });
+    })
+    .catch(err => err);
   }, []);
 
   if (isLoading) {
@@ -27,7 +29,7 @@ function Authenticate({ children }) {
     );
   } else {
     return (
-      <AuthContext.Provider value={{ isAuthenticated }}>
+      <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
         {children}
       </AuthContext.Provider>
     );
