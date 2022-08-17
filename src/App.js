@@ -4,6 +4,7 @@ import Home from './components/Home';
 import BlogList from './components/BlogList';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import Nav from './components/Nav';
 import BlogForm from './components/BlogForm';
 import Blog from './components/Blog';
@@ -22,7 +23,8 @@ function App() {
         <Route path="blogs/:blogId/comments/create" element={<CommentForm />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
-        <Route path="/users/profile" element={<Profile />} />
+        <Route path="users/profile" element={<Profile />} />
+        <Route path="users/logout" element={<Logout />} />
       </Routes>
     </BrowserRouter>
   );
