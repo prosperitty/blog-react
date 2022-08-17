@@ -3,33 +3,44 @@ import logo from '../logo.svg';
 import '../App.css';
 
 function Profile() {
-  const [apiResponse, setApiResponse] = useState('');
+  const [apiResponse, setApiResponse] = useState({ isLoading: true });
 
   useEffect(() => {
     fetch('/users/profile')
       .then((res) => res.json())
-      .then((res) => setApiResponse(res))
+      .then((res) =>
+        setApiResponse({
+          isLoading: false,
+          user: res.user,
+        })
+      )
       .catch((err) => err);
   }, []);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Profile
-        </a>
-      </header>
-    </div>
-  );
+  if (apiResponse.isLoading) {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <p>Loading...</p>
+        </header>
+      </div>
+    );
+  } else {
+    return (
+      <div className="App">
+        <header className="">
+          <p>jane doe</p>
+          <ul>
+            <li>Profile</li>
+            <li>unpublished articles</li>
+            <li>published articles</li>
+          </ul>
+        </header>
+        <main>dynamic content</main>
+      </div>
+    );
+  }
 }
 
 export default Profile;
