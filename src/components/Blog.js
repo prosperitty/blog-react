@@ -12,7 +12,7 @@ function Blog() {
     isLoading: true,
     error: undefined,
   });
-  const [blogId, setBlogId] = useState(useParams());
+  const [blogId] = useState(useParams());
 
   useEffect(() => {
     fetch(`${blogId.blogId}`)

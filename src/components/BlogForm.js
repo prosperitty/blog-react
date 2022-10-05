@@ -15,7 +15,7 @@ function BlogForm() {
     <div className="App">
       <form action="" enctype="multipart/form-data" method="POST">
         <div>
-          <label for="title">Article Title:</label>
+          <label htmlFor="title">Article Title:</label>
           <input
             type="text"
             placeholder="article title"
@@ -25,15 +25,15 @@ function BlogForm() {
           />
         </div>
         <div>
-          <label for="image">Article Image:</label>
+          <label htmlFor="image">Article Image:</label>
           <input type="file" name="image" />
         </div>
         <div>
-          <label for="summary">Summary:</label>
+          <label htmlFor="summary">Summary:</label>
           <textarea name="summary" rows="3" placeholder="summary"></textarea>
         </div>
         <div>
-          <label for="content">Content:</label>
+          <label htmlFor="content">Content:</label>
           <textarea name="content" rows="10" placeholder="content"></textarea>
         </div>
         <div class="col-auto">

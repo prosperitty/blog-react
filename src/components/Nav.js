@@ -13,11 +13,25 @@ function Nav() {
             <Link className="logo" to="/">
               Event Horizon
             </Link>
-            <Link className="nav-link" to="/">
-              Home
+          </div>
+          <div>
+            <Link className="nav-link" to="category">
+              Latest
             </Link>
-            <Link className="nav-link" to="blogs">
-              Blogs
+            <Link className="nav-link" to="category">
+              Politics
+            </Link>
+            <Link className="nav-link" to="category">
+              Business
+            </Link>
+            <Link className="nav-link" to="category">
+              Technology
+            </Link>
+            <Link className="nav-link" to="category">
+              Science
+            </Link>
+            <Link className="nav-link" to="category">
+              Health
             </Link>
           </div>
           <div>
@@ -39,11 +53,25 @@ function Nav() {
             <Link className="logo" to="/">
               Event Horizon
             </Link>
-            <Link className="nav-link" to="/">
-              Home
+          </div>
+          <div>
+            <Link className="nav-link" to="category">
+              Latest
             </Link>
-            <Link className="nav-link" to="blogs">
-              Blogs
+            <Link className="nav-link" to="category">
+              Politics
+            </Link>
+            <Link className="nav-link" to="category">
+              Business
+            </Link>
+            <Link className="nav-link" to="category">
+              Technology
+            </Link>
+            <Link className="nav-link" to="category">
+              Science
+            </Link>
+            <Link className="nav-link" to="category">
+              Health
             </Link>
           </div>
           <div>
