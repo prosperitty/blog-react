@@ -18,19 +18,19 @@ function Nav() {
             <Link className="nav-link" to="category">
               Latest
             </Link>
-            <Link className="nav-link" to="category">
+            <Link className="nav-link" to="category/633d2bd499336cb4c9381d17">
               Politics
             </Link>
-            <Link className="nav-link" to="category">
+            <Link className="nav-link" to="category/63433c0bf956b9ec2934ecdc">
               Business
             </Link>
-            <Link className="nav-link" to="category">
+            <Link className="nav-link" to="category/63433c30f956b9ec2934ecea">
               Technology
             </Link>
-            <Link className="nav-link" to="category">
+            <Link className="nav-link" to="category/63433c35f956b9ec2934ecf8">
               Science
             </Link>
-            <Link className="nav-link" to="category">
+            <Link className="nav-link" to="category/63433c39f956b9ec2934ed06">
               Health
             </Link>
           </div>
@@ -58,25 +58,28 @@ function Nav() {
             <Link className="nav-link" to="category">
               Latest
             </Link>
-            <Link className="nav-link" to="category">
+            <Link className="nav-link" to="category/633d2bd499336cb4c9381d17">
               Politics
             </Link>
-            <Link className="nav-link" to="category">
+            <Link className="nav-link" to="category/63433c0bf956b9ec2934ecdc">
               Business
             </Link>
-            <Link className="nav-link" to="category">
+            <Link className="nav-link" to="category/63433c30f956b9ec2934ecea">
               Technology
             </Link>
-            <Link className="nav-link" to="category">
+            <Link className="nav-link" to="category/63433c35f956b9ec2934ecf8">
               Science
             </Link>
-            <Link className="nav-link" to="category">
+            <Link className="nav-link" to="category/63433c39f956b9ec2934ed06">
               Health
             </Link>
           </div>
           <div>
             <Link className="nav-link" to="blogs/create">
               New Article
+            </Link>
+            <Link className="nav-link" to="category/create">
+              New Category
             </Link>
             <Link className="nav-link" to="users/profile">
               Profile
