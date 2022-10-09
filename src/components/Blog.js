@@ -8,6 +8,7 @@ import '../App.css';
 function Blog() {
   const [apiResponse, setApiResponse] = useState({
     article: undefined,
+    category: undefined,
     comments: [],
     isLoading: true,
     error: undefined,
@@ -20,6 +21,7 @@ function Blog() {
       .then((res) =>
         setApiResponse({
           article: res.article,
+          category: res.category,
           comments: res.comments,
           isLoading: false,
           error: res.error,
@@ -38,7 +40,7 @@ function Blog() {
   //does not work when apiresponse.comments is undefined
   //works when apiResponse.comments has an empty array
   const commentList = apiResponse.comments.map((comment, index) => (
-    <div>
+    <div key={index}>
       <p>{comment.date}</p>
       <p>{comment.comment}</p>
     </div>
@@ -57,6 +59,7 @@ function Blog() {
     return (
       <div className="App">
         <header className="App-header">
+          <p>{apiResponse.article.category}</p>
           <p>{apiResponse.article.date}</p>
           <p>{apiResponse.article.title}</p>
           <p>{apiResponse.article.summary}</p>

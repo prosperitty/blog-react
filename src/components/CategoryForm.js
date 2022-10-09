@@ -20,7 +20,7 @@ function CategoryForm() {
             type="text"
             placeholder="category"
             name="category"
-            required={true}
+            required
           />
         </div>
         <div>

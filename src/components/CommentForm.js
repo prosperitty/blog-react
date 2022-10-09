@@ -21,6 +21,7 @@ function CommentForm() {
             name="comment"
             rows="10"
             placeholder="post a comment"
+            required
           ></textarea>
         </div>
         <div>
