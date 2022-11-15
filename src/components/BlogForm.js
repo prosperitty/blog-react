@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import logo from '../logo.svg';
+import { Editor } from "@tinymce/tinymce-react";
 import '../App.css';
 
 function BlogForm() {
@@ -19,7 +20,7 @@ function BlogForm() {
   }, []);
 
   const categoryList = apiResponse.category_list.map((category, index) => (
-    <option key={index}>
+    <option key={index} value={category._id}>
       {category.category}
     </option>
   ));
@@ -65,7 +66,8 @@ function BlogForm() {
           </div>
           <div>
             <label htmlFor="content">Content:</label>
-            <textarea name="content" rows="10" placeholder="content" required></textarea>
+            <Editor textareaName='content' required />
+            {/* <textarea name="content" rows="10" placeholder="content" required></textarea> */}
           </div>
           <div>
             <button type="submit">
