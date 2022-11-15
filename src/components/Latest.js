@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 function Latest() {
   const [apiResponse, setApiResponse] = useState({
     latest_list: [],
+    category_list: [],
     isLoading: true,
     error: undefined,
   });
@@ -17,6 +18,7 @@ function Latest() {
       const res = await response.json();
       setApiResponse({
         latest_list: res.latest_list,
+        category_list: res.category_list,
         isLoading: false,
         error: res.error,
       });
@@ -47,6 +49,16 @@ function Latest() {
     );
   });
 
+  const categories = apiResponse.category_list.map((category, index) => {
+    return (
+      <div key={category._id}>
+        <Link to={category.url}>
+          {category.category}
+        </Link>
+      </div>
+    );
+  });
+
   if (apiResponse.isLoading) {
     return (
       <div className="App">
@@ -59,10 +71,9 @@ function Latest() {
   } else {
     return (
       <div className="App">
-        <header>
-          header
-        </header>
+        <header>header</header>
         <section>{posts}</section>
+        <section>{categories}</section>
       </div>
     );
   }
