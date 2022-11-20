@@ -70,8 +70,15 @@ function BlogForm() {
             {/* <textarea name="content" rows="10" placeholder="content" required></textarea> */}
           </div>
           <div>
+            <span>Publish Article: </span>
+            <label htmlFor="yes">yes</label>
+            <input type="radio" name="isPublished" id="yes" value={true}/>
+            <label htmlFor="no">no</label>
+            <input type="radio" name="isPublished" id="no" value={false} checked />
+          </div>
+          <div>
             <button type="submit">
-              Submit
+              submit
             </button>
           </div>
         </form>
