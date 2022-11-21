@@ -41,8 +41,10 @@ function Signup() {
           <input name="firstname" placeholder="first name" type="text" />
           <label htmlFor="lastname">Last Name</label>
           <input name="lastname" placeholder="last name" type="text" />
-          <label htmlFor="username">Username</label>
-          <input name="username" placeholder="username" type="email" />
+          <label htmlFor="email">email</label>
+          <input name="email" placeholder="email" type="email" />
+          <label htmlFor="username">username</label>
+          <input name="username" placeholder="username" type="text" />
           <label htmlFor="password">Password</label>
           <input name="password" placeholder="password" type="password" />
           <button>Sign Up</button>

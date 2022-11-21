@@ -39,7 +39,7 @@ function Login() {
       <div className="App">
         <form action="" method="POST">
           <label htmlFor="username">Username</label>
-          <input name="username" placeholder="username" type="email" />
+          <input name="username" placeholder="username" type="text" />
           <label htmlFor="password">Password</label>
           <input name="password" type="password" />
           <button>Log In</button>
