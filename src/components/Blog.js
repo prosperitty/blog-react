@@ -36,7 +36,6 @@ function Blog() {
           comments: res.comments,
           error: res.error,
         });
-        console.log(res.article.image)
         setArticleTitle(res.article.title)
         setArticleSummary(res.article.summary)
         setEditorContent(res.article.content)
@@ -47,7 +46,6 @@ function Blog() {
       .catch((err) => err);
   }
 
-  //LEFT OFF HERE FINISH EDIT FEATURES AND DELETE FUNCTIONALITY
   function editArticle() {
     console.log('is editing');
     return setisEditing(true);
@@ -77,14 +75,7 @@ function Blog() {
   async function submitEdit() {
     try {
       setIsLoading(true);
-      // const articleTitle = document.querySelector('#article-title');
-      // const articleSummary = document.querySelector('#article-summary');
       const articleCategory = document.querySelector('#article-category');
-      console.log(articleTitle)
-      console.log(articleCategory.value)
-      console.log(articleSummary)
-      console.log(editorContent)
-      console.log(articleIsPublished)
       const response = await fetch(`${blogId.blogId}`, {
         method: 'PUT',
         mode: 'cors',
