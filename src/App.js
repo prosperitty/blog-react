@@ -10,8 +10,8 @@ import BlogForm from './components/BlogForm';
 import Blog from './components/Blog';
 import CommentForm from './components/CommentForm';
 import Profile from './components/Profile';
-import Latest from './components/Latest';
 import Category from './components/Category';
+import CategoryList from './components/CategoryList';
 import CategoryForm from './components/CategoryForm';
 
 function App() {
@@ -24,9 +24,9 @@ function App() {
         <Route path="blogs/create" element={<BlogForm />} />
         <Route path="blogs/:blogId" element={<Blog />} />
         <Route path="blogs/:blogId/comments/create" element={<CommentForm />} />
-        <Route path="category" element={<Category />} />
+        <Route path="category" element={<CategoryList />} />
         <Route path="category/create" element={<CategoryForm />} />
-        <Route path="category/:categoryId" element={<Latest />} />
+        <Route path="category/:categoryId" element={<Category />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
         <Route path="users/profile" element={<Profile />} />
