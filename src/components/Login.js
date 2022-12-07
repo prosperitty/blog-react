@@ -36,13 +36,24 @@ function Login() {
   } else {
     console.log(apiResponse);
     return (
-      <div className="App">
-        <form action="" method="POST">
+      <div className="register-page">
+        <h1 className="register-heading">Login</h1>
+        <form action="" method="POST" className="register-container">
           <label htmlFor="username">Username</label>
-          <input name="username" placeholder="username" type="text" />
+          <input
+            className="register-input"
+            name="username"
+            placeholder="username"
+            type="text"
+          />
           <label htmlFor="password">Password</label>
-          <input name="password" type="password" />
-          <button>Log In</button>
+          <input
+            className="register-input"
+            name="password"
+            placeholder="password"
+            type="password"
+          />
+          <button className="register-button">Log In</button>
         </form>
       </div>
     );
