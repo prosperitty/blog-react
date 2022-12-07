@@ -1,35 +1,58 @@
-import { useEffect, useState } from 'react';
 import '../App.css';
+import React, { useContext } from 'react';
+import { AuthContext } from '../Context/AuthContext';
 
-function CommentForm() {
-  const [apiResponse, setApiResponse] = useState('');
+function CommentForm(props) {
+  // const [apiResponse, setApiResponse] = useState('');
 
-  useEffect(() => {
-    fetch('create')
-      .then((res) => res.json())
-      .then((res) => setApiResponse(res))
-      .catch((err) => err);
-  }, []);
+  // useEffect(() => {
+  //   fetch('create')
+  //     .then((res) => res.json())
+  //     .then((res) => setApiResponse(res))
+  //     .catch((err) => err);
+  // }, []);
+  const { isAuthenticated } = useContext(AuthContext);
 
-  return (
-    <div className="App">
-      <h1>{apiResponse.header}</h1>
-      <form action="" method="POST">
-        <div>
-          <label htmlFor="comment">Comment:</label>
-          <textarea
-            name="comment"
-            rows="10"
-            placeholder="post a comment"
-            required
-          ></textarea>
-        </div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </div>
-  );
+  if (isAuthenticated) {
+    return (
+      <div>
+        <form action={props.commentRoute} method="POST">
+          <div className="comment-field-container">
+            {/* <label htmlFor="comment">Comment:</label> */}
+            <textarea
+              name="comment"
+              rows="4"
+              placeholder="Add a Comment"
+              className="comment-textarea"
+              required
+            ></textarea>
+          </div>
+          <div>
+            <button className="btn-submit btn" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <form action={props.commentRoute} method="POST">
+          <div className="comment-field-container">
+            {/* <label htmlFor="comment">Comment:</label> */}
+            <textarea
+              name="comment"
+              rows="4"
+              placeholder="Sign in to add a comment"
+              className="comment-textarea"
+              disabled
+            ></textarea>
+          </div>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default CommentForm;
