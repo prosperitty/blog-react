@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import horizon from '../horizon.png'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
 
@@ -13,25 +14,14 @@ function Nav() {
             <Link className="logo" to="/">
               Event Horizon
             </Link>
+            <img className="event-horizon" src={horizon} alt="event horizon" />
           </div>
           <div>
-            <Link className="nav-link" to="category">
+            <Link className="nav-link" to="blogs">
               Latest
             </Link>
-            <Link className="nav-link" to="category/633d2bd499336cb4c9381d17">
-              Politics
-            </Link>
-            <Link className="nav-link" to="category/63433c0bf956b9ec2934ecdc">
-              Business
-            </Link>
-            <Link className="nav-link" to="category/63433c30f956b9ec2934ecea">
-              Technology
-            </Link>
-            <Link className="nav-link" to="category/63433c35f956b9ec2934ecf8">
-              Science
-            </Link>
-            <Link className="nav-link" to="category/63433c39f956b9ec2934ed06">
-              Health
+            <Link className="nav-link" to="category">
+              Categories
             </Link>
           </div>
           <div>
@@ -53,34 +43,23 @@ function Nav() {
             <Link className="logo" to="/">
               Event Horizon
             </Link>
+            <img className="event-horizon" src={horizon} alt="event horizon" />
           </div>
           <div>
-            <Link className="nav-link" to="category">
+            <Link className="nav-link" to="blogs">
               Latest
             </Link>
-            <Link className="nav-link" to="category/633d2bd499336cb4c9381d17">
-              Politics
+            <Link className="nav-link" to="category">
+              Categories
             </Link>
-            <Link className="nav-link" to="category/63433c0bf956b9ec2934ecdc">
-              Business
-            </Link>
-            <Link className="nav-link" to="category/63433c30f956b9ec2934ecea">
-              Technology
-            </Link>
-            <Link className="nav-link" to="category/63433c35f956b9ec2934ecf8">
-              Science
-            </Link>
-            <Link className="nav-link" to="category/63433c39f956b9ec2934ed06">
-              Health
-            </Link>
-          </div>
-          <div>
             <Link className="nav-link" to="blogs/create">
               New Article
             </Link>
             <Link className="nav-link" to="category/create">
               New Category
             </Link>
+          </div>
+          <div>
             <Link className="nav-link" to="users/profile">
               Profile
             </Link>
