@@ -3,14 +3,6 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 
 function CommentForm(props) {
-  // const [apiResponse, setApiResponse] = useState('');
-
-  // useEffect(() => {
-  //   fetch('create')
-  //     .then((res) => res.json())
-  //     .then((res) => setApiResponse(res))
-  //     .catch((err) => err);
-  // }, []);
   const { isAuthenticated } = useContext(AuthContext);
 
   if (isAuthenticated) {
