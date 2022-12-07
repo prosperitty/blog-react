@@ -1,14 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Buffer } from 'buffer';
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
 import logo from '../logo.svg';
 import '../App.css';
+import CommentForm from './CommentForm';
+import { AuthContext } from '../Context/AuthContext';
+
 
 function Blog() {
   const [apiResponse, setApiResponse] = useState({
     article: undefined,
+    user: {},
     category: undefined,
     comments: [],
     error: undefined,
@@ -21,24 +25,28 @@ function Blog() {
   const [articleTitle, setArticleTitle] = useState('');
   const [articleSummary, setArticleSummary] = useState('');
   const [articleIsPublished, setArticleisPublished] = useState('');
-  const [blogId] = useState(useParams());
+  // adding params to state causes bugs when added as dependency on useEffect
+  // const [blogId] = useState(useParams());
+  const { blogId } = useParams();
+  const { isAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
     callAPI();
   }, [blogId]);
 
   function callAPI() {
-    fetch(`${blogId.blogId}`)
+    fetch(`${blogId}`)
       .then((res) => res.json())
       .then((res) => {
         setApiResponse({
           article: res.article,
+          user: res.user,
           comments: res.comments,
           error: res.error,
         });
-        setArticleTitle(res.article.title)
-        setArticleSummary(res.article.summary)
-        setEditorContent(res.article.content)
+        setArticleTitle(res.article.title);
+        setArticleSummary(res.article.summary);
+        setEditorContent(res.article.content);
         setArticleisPublished(res.article.isPublished);
         setCategoryList(res.category_list);
         setIsLoading(false);
@@ -76,7 +84,7 @@ function Blog() {
     try {
       setIsLoading(true);
       const articleCategory = document.querySelector('#article-category');
-      const response = await fetch(`${blogId.blogId}`, {
+      const response = await fetch(`${blogId}`, {
         method: 'PUT',
         mode: 'cors',
         headers: {
@@ -110,7 +118,7 @@ function Blog() {
   async function deleteArticle() {
     try {
       setIsLoading(true);
-      const response = await fetch(`${blogId.blogId}`, {
+      const response = await fetch(`${blogId}`, {
         method: 'DELETE',
         mode: 'cors',
       });
@@ -134,11 +142,33 @@ function Blog() {
     return `data:${mimetype};base64,${buffer}`;
   }
 
+  function displayEditAndDeleteBtn() {
+    if (apiResponse.user === undefined || !isAuthenticated) {
+      return (
+        <div></div>
+      )
+    } else if (apiResponse.user._id === apiResponse.article.user._id && isAuthenticated) {
+      return (
+        <div>
+             <button className="btn-edit btn" onClick={editArticle}>
+              edit
+            </button>
+            <button className="btn-delete btn" onClick={deleteArticle}>
+              Delete
+            </button>
+        </div>
+      )
+    }
+  }
+
   //does not work when apiresponse.comments is undefined
   //works when apiResponse.comments has an empty array
   const commentList = apiResponse.comments.map((comment, index) => (
-    <div key={index}>
-      <p>{comment.date}</p>
+    <div key={index} className="comment-container">
+      <p>
+        <span className="comment-user">{comment.user.username}</span>
+        <span className="comment-date">{comment.date_formatted}</span>
+      </p>
       <p>{comment.comment}</p>
     </div>
   ));
@@ -163,25 +193,29 @@ function Blog() {
     if (apiResponse.article.isPublished) {
       return (
         <div>
-          <label htmlFor="isPublished">unpublish</label>
           <input
             type="checkbox"
             name="isPublished"
             onClick={handleCheckboxChange}
             value={false}
           ></input>
+          <label className="blog-radio-label" htmlFor="isPublished">
+            Unpublish
+          </label>
         </div>
       );
     } else {
       return (
         <div>
-          <label htmlFor="isPublished">publish</label>
           <input
             type="checkbox"
             name="isPublished"
             onClick={handleCheckboxChange}
             value={true}
           ></input>
+          <label className="blog-radio-label" htmlFor="isPublished">
+            Publish
+          </label>
         </div>
       );
     }
@@ -200,11 +234,13 @@ function Blog() {
     return <Navigate to="/blogs" replace="true" />;
   } else if (isEditing) {
     return (
-      <div className="App">
-        <form action="" encType="multipart/form-data">
+      <div className="blog-form-page">
+        <h1>Edit Article</h1>
+        <form className="blog-form" action="" encType="multipart/form-data">
           <div>
-            <label htmlFor="title">Article Title:</label>
+            <label htmlFor="title">Article Title</label>
             <input
+              className="blog-input-text"
               type="text"
               placeholder="article title"
               id="article-title"
@@ -218,8 +254,9 @@ function Blog() {
             <input type="file" name="image" />
           </div> */}
           <div>
-            <label htmlFor="category">Category:</label>
+            <label htmlFor="category">Category</label>
             <select
+              className="blog-input-select"
               type="select"
               placeholder="Select a Category"
               id="article-category"
@@ -231,8 +268,9 @@ function Blog() {
             </select>
           </div>
           <div>
-            <label htmlFor="summary">Summary:</label>
+            <label htmlFor="summary">Summary</label>
             <textarea
+              className="blog-input-area"
               name="summary"
               rows="3"
               placeholder="summary"
@@ -241,19 +279,22 @@ function Blog() {
               defaultValue={apiResponse.article.summary}
             ></textarea>
           </div>
+          {publishButton()}
           <div>
-            <label htmlFor="content">Content:</label>
+            <label htmlFor="content">Content</label>
             <Editor
               textareaName="content"
               id="article-content"
               onChange={handleEditorChange}
-              value={apiResponse.article.content}
+              initialValue={apiResponse.article.content}
             />
-            {/* <textarea name="content" rows="10" placeholder="content" required></textarea> */}
           </div>
-          {publishButton()}
           <div>
-            <button type="submit" onClick={submitEdit}>
+            <button
+              className="register-button blog-button"
+              type="submit"
+              onClick={submitEdit}
+            >
               Submit
             </button>
           </div>
@@ -262,23 +303,40 @@ function Blog() {
     );
   } else {
     return (
-      <div className="App">
-        <button onClick={deleteArticle}>Delete</button>
-        <button onClick={editArticle}>edit</button>
-        <header className="App-header">
-          <p>{apiResponse.article.category.category}</p>
-          <p>{apiResponse.article.date}</p>
-          <p>{apiResponse.article.title}</p>
-          <p>{apiResponse.article.summary}</p>
-          <img src={renderImage(apiResponse.article)} alt="article" />
-        </header>
+      <div className="App article-page">
+        <article>
+          <header className="article-header">
+            <p className="category-tag">
+              {apiResponse.article.category.category}
+            </p>
+            <h1>{apiResponse.article.title}</h1>
+            <p className="article-summary">{apiResponse.article.summary}</p>
+            <p className="article-date-user">
+              <span className="article-user">
+                By {apiResponse.article.user.username}
+              </span>
+              <span>&#8226;</span>
+              <span className="article-date">
+                {apiResponse.article.date_formatted}
+              </span>
+            </p>
+            {displayEditAndDeleteBtn()}
+          </header>
+          <img
+            alt="article"
+            className="main-image"
+            src={renderImage(apiResponse.article)}
+          />
 
-        <main
-          dangerouslySetInnerHTML={{ __html: apiResponse.article.content }}
-        ></main>
-
+          <main
+            className="article-content"
+            dangerouslySetInnerHTML={{ __html: apiResponse.article.content }}
+          ></main>
+        </article>
         <section>
-          <Link to="comments/create">new comment</Link>
+          <hr></hr>
+          <h1>Comments</h1>
+          <CommentForm commentRoute={blogId + '/comments/create'} />
           {commentList}
         </section>
       </div>
