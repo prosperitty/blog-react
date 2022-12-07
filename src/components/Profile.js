@@ -13,9 +13,10 @@ function Profile() {
   const [isLoading, setIsLoading] = useState(true);
   const [publishedPage, setpublishedPaged] = useState(false);
   const [unpublishedPage, setUnpublishedPaged] = useState(true);
+  const [profliePage, setProfilePage] = useState(false);
 
   useEffect(() => {
-    callAPI()
+    callAPI();
   }, []);
 
   function callAPI() {
@@ -26,24 +27,33 @@ function Profile() {
           unpublished_articles: res.unpublished_articles,
           published_articles: res.published_articles,
           user: res.user,
-        })
+        });
         setIsLoading(false);
-      }
-      )
+      })
       .catch((err) => err);
   }
 
   function togglePublishedPage() {
-    if (unpublishedPage) {
-      setpublishedPaged(true);
+    if (unpublishedPage || profliePage) {
+      setProfilePage(false);
       setUnpublishedPaged(false);
+      setpublishedPaged(true);
     }
   }
 
   function toggleUnpublishedPage() {
-    if (publishedPage) {
-      setUnpublishedPaged(true);
+    if (publishedPage || profliePage) {
       setpublishedPaged(false);
+      setProfilePage(false);
+      setUnpublishedPaged(true);
+    }
+  }
+
+  function toggleProfilePage() {
+    if (unpublishedPage || publishedPage) {
+      setUnpublishedPaged(false);
+      setpublishedPaged(false);
+      return setProfilePage(true);
     }
   }
 
@@ -53,14 +63,24 @@ function Profile() {
       let mimetype = post.image.contentType;
       return (
         <div key={post._id}>
-          <h4>
-            <Link className="nav-link" to={post.url}>
+          <img
+            alt="article"
+            className="latest-image"
+            src={`data:${mimetype};base64,${buffer}`}
+          />
+          <p className="latest-post-date">
+            <span className="article-user">By {post.user.username}</span>
+            <span>&#8226;</span>
+            <span className="article-date">{post.date_formatted}</span>
+          </p>
+          <h4 className="latest-post-title">
+            <Link className="nav-link latest-post-title" to={post.url}>
               {post.title}
             </Link>
           </h4>
-          <p>{post.summary}</p>
-          <p>{post.date}</p>
-          <img alt="article" src={`data:${mimetype};base64,${buffer}`} />
+          <div>
+            <p className="latest-post-summary">{post.summary}</p>
+          </div>
         </div>
       );
     }
@@ -71,14 +91,19 @@ function Profile() {
     let mimetype = post.image.contentType;
     return (
       <div key={post._id}>
-        <h4>
-          <Link className="nav-link" to={post.url}>
+        <img
+          alt="article"
+          className="latest-image"
+          src={`data:${mimetype};base64,${buffer}`}
+        />
+        <h4 className="latest-post-title">
+          <Link className="nav-link latest-post-title" to={post.url}>
             {post.title}
           </Link>
         </h4>
-        <p>{post.summary}</p>
-        <p>{post.date}</p>
-        <img alt="article" src={`data:${mimetype};base64,${buffer}`} />
+        <div>
+          <p className="latest-post-summary">{post.summary}</p>
+        </div>
       </div>
     );
   });
@@ -94,39 +119,77 @@ function Profile() {
     );
   } else if (unpublishedPage) {
     return (
-      <div className="App">
+      <div className="profile-page">
         <header className="">
-          <p>{apiResponse.user.firstName} {apiResponse.user.lastName}</p>
-          <ul>
-            <li>Profile</li>
-            <li onClick={toggleUnpublishedPage}>unpublished articles</li>
+          <h1 className="profile-user">
+            {apiResponse.user.firstName} {apiResponse.user.lastName}
+          </h1>
+          <ul className="profile-tabs">
+            <li onClick={toggleProfilePage}>Profile</li>
+            <li className="tab-active" onClick={toggleUnpublishedPage}>
+              unpublished articles
+            </li>
             <li onClick={togglePublishedPage}>published articles</li>
           </ul>
         </header>
-        {unpublishedPosts}
+        <section className="latest-posts-container">
+          <div className="latest-posts-grid">{unpublishedPosts}</div>
+        </section>
       </div>
     );
   } else if (publishedPage) {
     return (
-      <div className="App">
+      <div className="profile-page">
         <header className="">
-          <p>{apiResponse.user.firstName} {apiResponse.user.lastName}</p>
-          <ul>
-            <li>Profile</li>
+          <h1 className="profile-user">
+            {apiResponse.user.firstName} {apiResponse.user.lastName}
+          </h1>
+          <ul className="profile-tabs">
+            <li onClick={toggleProfilePage}>Profile</li>
+            <li onClick={toggleUnpublishedPage}>unpublished articles</li>
+            <li className="tab-active" onClick={togglePublishedPage}>
+              published articles
+            </li>
+          </ul>
+        </header>
+        <section className="latest-posts-container">
+          <div className="latest-posts-grid">{publishedPosts}</div>
+        </section>
+      </div>
+    );
+  } else if (profliePage) {
+    return (
+      <div className="profile-page">
+        <header className="">
+          <h1 className="profile-user">
+            {apiResponse.user.firstName} {apiResponse.user.lastName}
+          </h1>
+          <ul className="profile-tabs">
+            <li className="tab-active" onClick={toggleProfilePage}>
+              Profile
+            </li>
             <li onClick={toggleUnpublishedPage}>unpublished articles</li>
             <li onClick={togglePublishedPage}>published articles</li>
           </ul>
         </header>
-        {publishedPosts}
+        <section className="latest-posts-container">
+          <p>
+            name: {apiResponse.user.firstName} {apiResponse.user.lastName}
+          </p>
+          <p>username: {apiResponse.user.username}</p>
+          <p>email: {apiResponse.user.email}</p>
+        </section>
       </div>
     );
   } else {
     return (
-      <div className="App">
+      <div className="profile-page">
         <header className="">
-          <p>{apiResponse.user.firstName} {apiResponse.user.lastName}</p>
-          <ul>
-            <li>Profile</li>
+          <h1 className="profile-user">
+            {apiResponse.user.firstName} {apiResponse.user.lastName}
+          </h1>
+          <ul className="profile-tabs">
+            <li onClick={toggleProfilePage}>Profile</li>
             <li onClick={toggleUnpublishedPage}>unpublished articles</li>
             <li onClick={togglePublishedPage}>published articles</li>
           </ul>
