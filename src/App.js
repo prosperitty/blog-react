@@ -24,9 +24,9 @@ function App() {
         <Route path="blogs/create" element={<BlogForm />} />
         <Route path="blogs/:blogId" element={<Blog />} />
         <Route path="blogs/:blogId/comments/create" element={<CommentForm />} />
-        <Route path="category" element={<Latest />} />
+        <Route path="category" element={<Category />} />
         <Route path="category/create" element={<CategoryForm />} />
-        <Route path="category/:categoryId" element={<Category />} />
+        <Route path="category/:categoryId" element={<Latest />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
         <Route path="users/profile" element={<Profile />} />
