@@ -12,24 +12,20 @@ function CategoryForm() {
   }, []);
 
   return (
-    <div className="App">
-      <form action="" method="POST">
-        <div>
-          <label htmlFor="category">Category:</label>
-          <input
-            type="text"
-            placeholder="category"
-            name="category"
-            required
-          />
-        </div>
-        <div>
-          <button type="submit">
-            Submit
-          </button>
-        </div>
+    <div className="register-page">
+      <form className="register-container" action="" method="POST">
+        <label htmlFor="category">Category</label>
+        <input
+          className="register-input"
+          type="text"
+          placeholder="category"
+          name="category"
+          required
+        />
+        <button className="register-button" type="submit">
+          Submit
+        </button>
       </form>
-      <p>{apiResponse.message}</p>
     </div>
   );
 }
