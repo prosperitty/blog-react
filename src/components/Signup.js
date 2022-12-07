@@ -34,20 +34,45 @@ function Signup() {
     return <Navigate to="/blogs" replace="true" />;
   } else {
     return (
-      <div className="App">
-        <h1>Sign Up</h1>
-        <form action="" method="POST">
+      <div className="register-page">
+        <h1 className="register-heading">Sign Up</h1>
+        <form action="" method="POST" className="register-container">
           <label htmlFor="firstname">First Name</label>
-          <input name="firstname" placeholder="first name" type="text" />
+          <input
+            className="register-input"
+            name="firstname"
+            placeholder="first name"
+            type="text"
+          />
           <label htmlFor="lastname">Last Name</label>
-          <input name="lastname" placeholder="last name" type="text" />
+          <input
+            className="register-input"
+            name="lastname"
+            placeholder="last name"
+            type="text"
+          />
           <label htmlFor="email">email</label>
-          <input name="email" placeholder="email" type="email" />
+          <input
+            className="register-input"
+            name="email"
+            placeholder="email"
+            type="email"
+          />
           <label htmlFor="username">username</label>
-          <input name="username" placeholder="username" type="text" />
+          <input
+            className="register-input"
+            name="username"
+            placeholder="username"
+            type="text"
+          />
           <label htmlFor="password">Password</label>
-          <input name="password" placeholder="password" type="password" />
-          <button>Sign Up</button>
+          <input
+            className="register-input"
+            name="password"
+            placeholder="password"
+            type="password"
+          />
+          <button className="register-button">Sign Up</button>
         </form>
       </div>
     );
