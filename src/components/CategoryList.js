@@ -12,7 +12,9 @@ function CategoryList() {
 
   async function callAPI() {
     try {
-      const response = await fetch('category');
+      const response = await fetch('category', {
+        mode: 'cors'
+      });
       const res = await response.json();
       setApiResponse({
         latest_list: res.latest_list,

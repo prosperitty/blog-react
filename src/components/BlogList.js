@@ -13,7 +13,9 @@ function BlogList() {
 
   async function callAPI() {
     try {
-      const response = await fetch('blogs');
+      const response = await fetch('blogs', {
+        mode: 'cors'
+      });
       const res = await response.json();
       setApiResponse({
         article_list: res.article_list,

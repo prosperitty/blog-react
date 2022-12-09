@@ -20,7 +20,9 @@ function Profile() {
   }, []);
 
   function callAPI() {
-    fetch('/users/profile')
+    fetch('/users/profile', {
+      mode: 'cors'
+    })
       .then((res) => res.json())
       .then((res) => {
         setApiResponse({

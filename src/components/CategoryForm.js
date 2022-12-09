@@ -5,7 +5,9 @@ function CategoryForm() {
   const [apiResponse, setApiResponse] = useState('');
 
   useEffect(() => {
-    fetch('create')
+    fetch('create', {
+      mode: 'cors'
+    })
       .then((res) => res.json())
       .then((res) => setApiResponse(res))
       .catch((err) => err);

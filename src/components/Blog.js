@@ -35,7 +35,9 @@ function Blog() {
   }, [blogId]);
 
   function callAPI() {
-    fetch(`${blogId}`)
+    fetch(`${blogId}`, {
+      mode: 'cors'
+    })
       .then((res) => res.json())
       .then((res) => {
         setApiResponse({
