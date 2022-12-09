@@ -1,6 +1,6 @@
 const Auth = {
   isAuthenticated: async function isAuthenticated() {
-    return await fetch('users/authenticated', {
+    return await fetch('/users/authenticated', {
       mode: 'cors'
     })
       .then((res) => {
