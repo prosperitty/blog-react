@@ -38,7 +38,7 @@ function Signup() {
     return (
       <div className="register-page">
         <h1 className="register-heading">Sign Up</h1>
-        <form action="" method="POST" className="register-container">
+        <form action="https://eventhorizon.up.railway.app/signup" method="POST" className="register-container">
           <label htmlFor="firstname">First Name</label>
           <input
             className="register-input"

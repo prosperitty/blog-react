@@ -15,7 +15,7 @@ function CategoryForm() {
 
   return (
     <div className="register-page">
-      <form className="register-container" action="" method="POST">
+      <form className="register-container" action="https://eventhorizon.up.railway.app/create" method="POST">
         <label htmlFor="category">Category</label>
         <input
           className="register-input"

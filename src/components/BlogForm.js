@@ -44,7 +44,7 @@ function BlogForm() {
         <h1>{apiResponse.header}</h1>
         <form
           className="blog-form"
-          action=""
+          action="https://eventhorizon.up.railway.app/create"
           encType="multipart/form-data"
           method="POST"
         >

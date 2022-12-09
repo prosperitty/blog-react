@@ -11,7 +11,7 @@ const Auth = {
       .catch((err) => err);
   },
   logout: async function logout() {
-    return await fetch('logout', {
+    return await fetch('https://eventhorizon.up.railway.app/logout', {
       mode: 'cors'
     })
     .then(res => {
