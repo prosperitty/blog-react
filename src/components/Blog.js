@@ -35,7 +35,7 @@ function Blog() {
   }, [blogId]);
 
   function callAPI() {
-    fetch(`${blogId}`, {
+    fetch(`https://eventhorizon.up.railway.app/${blogId}`, {
       mode: 'cors'
     })
       .then((res) => res.json())

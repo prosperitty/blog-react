@@ -1,6 +1,6 @@
 const Auth = {
   isAuthenticated: async function isAuthenticated() {
-    return await fetch('users/authenticated')
+    return await fetch('https://eventhorizon.up.railway.app/users/authenticated')
       .then((res) => {
         if (res.status === 401) {
           return { isAuthenticated: false };

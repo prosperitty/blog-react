@@ -20,7 +20,7 @@ function Profile() {
   }, []);
 
   function callAPI() {
-    fetch('/users/profile', {
+    fetch('https://eventhorizon.up.railway.app/users/profile', {
       mode: 'cors'
     })
       .then((res) => res.json())

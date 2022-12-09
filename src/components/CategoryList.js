@@ -12,7 +12,7 @@ function CategoryList() {
 
   async function callAPI() {
     try {
-      const response = await fetch('category', {
+      const response = await fetch('https://eventhorizon.up.railway.app/category', {
         mode: 'cors'
       });
       const res = await response.json();

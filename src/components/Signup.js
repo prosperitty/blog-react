@@ -10,7 +10,7 @@ function Signup() {
   });
 
   useEffect(() => {
-    fetch('signup', {
+    fetch('https://eventhorizon.up.railway.app/signup', {
       mode: 'cors'
     })
       .then((res) => res.json())

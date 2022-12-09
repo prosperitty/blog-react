@@ -22,7 +22,7 @@ function Category() {
 
   async function callAPI() {
     try {
-      const response = await fetch(`${categoryId}`, {
+      const response = await fetch(`https://eventhorizon.up.railway.app/${categoryId}`, {
         mode: 'cors'
       });
       const res = await response.json();
