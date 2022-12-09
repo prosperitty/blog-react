@@ -1,4 +1,4 @@
-import { Routes, Route, HashRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
 import BlogList from './components/BlogList';
@@ -13,10 +13,14 @@ import Profile from './components/Profile';
 import Category from './components/Category';
 import CategoryList from './components/CategoryList';
 import CategoryForm from './components/CategoryForm';
+import { useEffect } from 'react';
 
 function App() {
+  useEffect(() => {
+    console.log('home')
+  })
   return (
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,7 +36,7 @@ function App() {
         <Route path="/users/profile" element={<Profile />} />
         <Route path="/users/logout" element={<Logout />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 export default App;
