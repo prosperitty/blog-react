@@ -20,17 +20,17 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="blogs" element={<BlogList />} />
-        <Route path="blogs/create" element={<BlogForm />} />
-        <Route path="blogs/:blogId" element={<Blog />} />
-        <Route path="blogs/:blogId/comments/create" element={<CommentForm />} />
-        <Route path="category" element={<CategoryList />} />
-        <Route path="category/create" element={<CategoryForm />} />
-        <Route path="category/:categoryId" element={<Category />} />
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="users/profile" element={<Profile />} />
-        <Route path="users/logout" element={<Logout />} />
+        <Route path="/blogs" element={<BlogList />} />
+        <Route path="/blogs/create" element={<BlogForm />} />
+        <Route path="/blogs/:blogId" element={<Blog />} />
+        <Route path="/blogs/:blogId/comments/create" element={<CommentForm />} />
+        <Route path="/category" element={<CategoryList />} />
+        <Route path="/category/create" element={<CategoryForm />} />
+        <Route path="/category/:categoryId" element={<Category />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/users/profile" element={<Profile />} />
+        <Route path="/users/logout" element={<Logout />} />
       </Routes>
     </HashRouter>
   );
