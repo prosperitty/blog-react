@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
 import BlogList from './components/BlogList';
@@ -16,7 +16,7 @@ import CategoryForm from './components/CategoryForm';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter basename={process.env.PUBLIC_URL}>
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,7 +32,7 @@ function App() {
         <Route path="users/profile" element={<Profile />} />
         <Route path="users/logout" element={<Logout />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 export default App;
