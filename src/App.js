@@ -19,6 +19,8 @@ function App() {
   useEffect(() => {
     console.log('home')
   })
+
+  //basename sets url to homepage route set in package.json
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Nav />

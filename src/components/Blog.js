@@ -35,7 +35,7 @@ function Blog() {
   }, [blogId]);
 
   function callAPI() {
-    fetch(`https://eventhorizon.up.railway.app/${blogId}`, {
+    fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}`, {
       mode: 'cors'
     })
       .then((res) => res.json())
@@ -86,7 +86,7 @@ function Blog() {
     try {
       setIsLoading(true);
       const articleCategory = document.querySelector('#article-category');
-      const response = await fetch(`https://eventhorizon.up.railway.app/${blogId}`, {
+      const response = await fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}`, {
         method: 'PUT',
         mode: 'cors',
         headers: {
@@ -120,7 +120,7 @@ function Blog() {
   async function deleteArticle() {
     try {
       setIsLoading(true);
-      const response = await fetch(`https://eventhorizon.up.railway.app/${blogId}`, {
+      const response = await fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}`, {
         method: 'DELETE',
         mode: 'cors',
       });
@@ -238,7 +238,7 @@ function Blog() {
     return (
       <div className="blog-form-page">
         <h1>Edit Article</h1>
-        <form className="blog-form" action={`https://eventhorizon.up.railway.app/${blogId}`} encType="multipart/form-data">
+        <form className="blog-form" action={`https://eventhorizon.up.railway.app/blogs/${blogId}`} encType="multipart/form-data">
           <div>
             <label htmlFor="title">Article Title</label>
             <input
@@ -338,7 +338,7 @@ function Blog() {
         <section>
           <hr></hr>
           <h1>Comments</h1>
-          <CommentForm commentRoute={`https://eventhorizon.up.railway.app/${blogId}/comments/create`} />
+          <CommentForm commentRoute={`https://eventhorizon.up.railway.app/blogs/${blogId}/comments/create`} />
           {commentList}
         </section>
       </div>

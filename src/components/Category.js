@@ -22,7 +22,7 @@ function Category() {
 
   async function callAPI() {
     try {
-      const response = await fetch(`https://eventhorizon.up.railway.app/${categoryId}`, {
+      const response = await fetch(`https://eventhorizon.up.railway.app/category/${categoryId}`, {
         mode: 'cors'
       });
       const res = await response.json();
@@ -46,7 +46,7 @@ function Category() {
     try {
       setIsLoading(true);
       const categoryName = document.querySelector('#category-name');
-      const response = await fetch(`https://eventhorizon.up.railway.app/${categoryId}`, {
+      const response = await fetch(`https://eventhorizon.up.railway.app/category/${categoryId}`, {
         method: 'PUT',
         mode: 'cors',
         headers: {
@@ -74,7 +74,7 @@ function Category() {
   async function deleteCategory() {
     try {
       setIsLoading(true);
-      const response = await fetch(`https://eventhorizon.up.railway.app/${categoryId}`, {
+      const response = await fetch(`https://eventhorizon.up.railway.app/category/${categoryId}`, {
         method: 'DELETE',
         mode: 'cors',
       });
@@ -183,7 +183,7 @@ function Category() {
   } else if (isEditing) {
     return (
       <div className="App">
-        <form action={`https://eventhorizon.up.railway.app/${categoryId}`} method="">
+        <form action={`https://eventhorizon.up.railway.app/category/${categoryId}`} method="">
           <div>
             <label htmlFor="category">Category:</label>
             <input

@@ -5,7 +5,7 @@ function CategoryForm() {
   const [apiResponse, setApiResponse] = useState('');
 
   useEffect(() => {
-    fetch('https://eventhorizon.up.railway.app/create', {
+    fetch('https://eventhorizon.up.railway.app/category/create', {
       mode: 'cors'
     })
       .then((res) => res.json())
@@ -15,7 +15,7 @@ function CategoryForm() {
 
   return (
     <div className="register-page">
-      <form className="register-container" action="https://eventhorizon.up.railway.app/create" method="POST">
+      <form className="register-container" action="https://eventhorizon.up.railway.app/category/create" method="POST">
         <label htmlFor="category">Category</label>
         <input
           className="register-input"
