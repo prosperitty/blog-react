@@ -34,6 +34,7 @@ function Login() {
       </div>
     );
   } else if (apiResponse.isLoggedIn) {
+    console.log(apiResponse);
     return <Navigate to="/blogs" replace="true" />;
   } else {
     console.log(apiResponse);
