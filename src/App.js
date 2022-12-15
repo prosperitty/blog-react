@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
 import BlogList from './components/BlogList';
@@ -22,7 +22,7 @@ function App() {
 
   //basename sets url to homepage route set in package.json
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter basename={process.env.PUBLIC_URL}>
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -38,7 +38,7 @@ function App() {
         <Route path="/users/profile" element={<Profile />} />
         <Route path="/users/logout" element={<Logout />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 export default App;
