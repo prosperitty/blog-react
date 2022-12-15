@@ -5,7 +5,6 @@ const Auth = {
         if (res.status === 401) {
           return { isAuthenticated: false };
         } else {
-          console.log(res.json());
           return res.json();
         }
       })
