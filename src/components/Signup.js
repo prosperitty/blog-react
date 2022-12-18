@@ -5,7 +5,9 @@ import { Navigate } from 'react-router-dom';
 
 function Signup() {
   const [apiResponse, setApiResponse] = useState({
+    message: '',
     isLoading: true,
+    isValid: false,
     isLoggedIn: false,
   });
 
@@ -17,7 +19,9 @@ function Signup() {
       .then((res) => res.json())
       .then((res) =>
         setApiResponse({
+          message: res.message,
           isLoading: false,
+          isValid: res.isValid,
           isLoggedIn: res.isLoggedIn,
         })
       )
@@ -35,10 +39,13 @@ function Signup() {
     );
   } else if (apiResponse.isLoggedIn) {
     return <Navigate to="/blogs" replace="true" />;
+  } else if (apiResponse.isValid) {
+    return <Navigate to="/login" replace="true" />;
   } else {
     return (
       <div className="register-page">
         <h1 className="register-heading">Sign Up</h1>
+        <p className='error message'>{apiResponse.message}</p>
         <form action="https://eventhorizon.up.railway.app/signup" method="POST" className="register-container">
           <label htmlFor="firstname">First Name</label>
           <input
