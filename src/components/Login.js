@@ -10,7 +10,7 @@ function Login() {
   });
 
   useEffect(() => {
-    fetch('/login')
+    fetch('/login', {credentials: 'include'})
       .then((res) => res.json())
       //remove req.user object
       .then((res) =>
