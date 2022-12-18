@@ -14,7 +14,7 @@ function Signup() {
   useEffect(() => {
     fetch('https://eventhorizon.up.railway.app/signup', {
       mode: 'cors',
-      credentials: 'include'
+      credentials: 'include',
     })
       .then((res) => res.json())
       .then((res) =>
@@ -41,7 +41,10 @@ function Signup() {
     fetch('/signup', {
       method: 'POST',
       credentials: 'include',
-      body: formData
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.Stringify(formData)
     })
       .then(response => response.json())
       .then(res => 
