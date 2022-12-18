@@ -1,6 +1,6 @@
 const Auth = {
   isAuthenticated: async function isAuthenticated() {
-    return await fetch('https://eventhorizon.up.railway.app/users/authenticated')
+    return await fetch('https://eventhorizon.up.railway.app/users/authenticated', {credentials: "include"})
       .then((res) => {
         if (res.status === 401) {
           return { isAuthenticated: false };
@@ -12,7 +12,7 @@ const Auth = {
   },
   logout: async function logout() {
     return await fetch('https://eventhorizon.up.railway.app/logout', {
-      mode: 'cors'
+      credentials: 'include'
     })
     .then(res => {
       if (res.status !== 200) {
