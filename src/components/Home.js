@@ -16,7 +16,8 @@ class Home extends Component {
 
   callAPI() {
     fetch('https://eventhorizon.up.railway.app/', {
-      mode: 'cors'
+      mode: 'cors',
+      credentials: 'include'
     })
       .then((res) => res.json())
       .then((res) => this.setState({ apiResponse: res }))

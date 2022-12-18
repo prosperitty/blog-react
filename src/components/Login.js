@@ -10,7 +10,10 @@ function Login() {
   });
 
   useEffect(() => {
-    fetch('https://eventhorizon.up.railway.app/login', {credentials: 'include'})
+    fetch('https://eventhorizon.up.railway.app/login', {
+      mode: 'cors',
+      credentials: 'include'
+    })
       .then((res) => res.json())
       //remove req.user object
       .then((res) =>

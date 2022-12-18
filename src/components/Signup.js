@@ -11,7 +11,8 @@ function Signup() {
 
   useEffect(() => {
     fetch('https://eventhorizon.up.railway.app/signup', {
-      mode: 'cors'
+      mode: 'cors',
+      credentials: 'include'
     })
       .then((res) => res.json())
       .then((res) =>

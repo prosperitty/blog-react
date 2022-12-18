@@ -21,7 +21,8 @@ function Profile() {
 
   function callAPI() {
     fetch('https://eventhorizon.up.railway.app/users/profile', {
-      mode: 'cors'
+      mode: 'cors',
+      credentials: 'include'
     })
       .then((res) => res.json())
       .then((res) => {

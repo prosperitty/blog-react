@@ -14,7 +14,8 @@ function BlogList() {
   async function callAPI() {
     try {
       const response = await fetch('https://eventhorizon.up.railway.app/blogs', {
-        mode: 'cors'
+        mode: 'cors',
+        credentials: 'include'
       });
       const res = await response.json();
       setApiResponse({

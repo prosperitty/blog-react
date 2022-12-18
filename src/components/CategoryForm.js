@@ -6,7 +6,8 @@ function CategoryForm() {
 
   useEffect(() => {
     fetch('https://eventhorizon.up.railway.app/category/create', {
-      mode: 'cors'
+      mode: 'cors',
+      credentials: 'include'
     })
       .then((res) => res.json())
       .then((res) => setApiResponse(res))

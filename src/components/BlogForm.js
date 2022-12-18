@@ -11,7 +11,8 @@ function BlogForm() {
 
   useEffect(() => {
     fetch('https://eventhorizon.up.railway.app/create', {
-      mode: 'cors'
+      mode: 'cors',
+      credentials: 'include'
     })
       .then((res) => res.json())
       .then((res) =>
