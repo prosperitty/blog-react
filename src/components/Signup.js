@@ -37,6 +37,11 @@ function Signup() {
       isLoggedIn: false,
     })
     const formData = new FormData(event.target);
+    const data = {};
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+    const jsonData = JSON.stringify(data);
   
     fetch('/signup', {
       method: 'POST',
@@ -44,7 +49,7 @@ function Signup() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.Stringify(formData)
+      body: jsonData
     })
       .then(response => response.json())
       .then(res => 
