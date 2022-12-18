@@ -22,7 +22,7 @@ function Profile() {
   function callAPI() {
     fetch('https://eventhorizon.up.railway.app/users/profile', {
       mode: 'cors',
-      credentials: 'include'
+      credentials: 'include',
     })
       .then((res) => res.json())
       .then((res) => {
@@ -71,16 +71,16 @@ function Profile() {
             className="latest-image"
             src={`data:${mimetype};base64,${buffer}`}
           /> */}
-          <p className="latest-post-date">
-            <span className="article-user">By {post.user.username}</span>
-            <span>&#8226;</span>
-            <span className="article-date">{post.date_formatted}</span>
-          </p>
           <h4 className="latest-post-title">
             <Link className="nav-link latest-post-title" to={post.url}>
               {post.title}
             </Link>
           </h4>
+          <p className="latest-post-date">
+            <span className="article-user">By {post.user.username}</span>
+            <span>&#8226;</span>
+            <span className="article-date">{post.date_formatted}</span>
+          </p>
           <div>
             <p className="latest-post-summary">{post.summary}</p>
           </div>
@@ -104,6 +104,11 @@ function Profile() {
             {post.title}
           </Link>
         </h4>
+        <p className="latest-post-date">
+          <span className="article-user">By {post.user.username}</span>
+          <span>&#8226;</span>
+          <span className="article-date">{post.date_formatted}</span>
+        </p>
         <div>
           <p className="latest-post-summary">{post.summary}</p>
         </div>
