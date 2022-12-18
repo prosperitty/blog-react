@@ -11,7 +11,7 @@ const Auth = {
       .catch((err) => err);
   },
   logout: async function logout() {
-    return await fetch('https://eventhorizon.up.railway.app/logout', {
+    return await fetch('https://eventhorizon.up.railway.app/users/logout', {
       credentials: 'include'
     })
     .then(res => {
