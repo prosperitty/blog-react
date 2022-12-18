@@ -43,7 +43,7 @@ function Signup() {
     });
     const jsonData = JSON.stringify(data);
   
-    fetch('/signup', {
+    fetch('https://eventhorizon.up.railway.app/signup', {
       method: 'POST',
       credentials: 'include',
       headers: {
