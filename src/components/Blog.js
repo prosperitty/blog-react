@@ -90,6 +90,7 @@ function Blog() {
       const response = await fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}`, {
         method: 'PUT',
         mode: 'cors',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -123,6 +124,7 @@ function Blog() {
       setIsLoading(true);
       const response = await fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}`, {
         method: 'DELETE',
+        credentials: 'include',
         mode: 'cors',
       });
       if (!response.ok) {
