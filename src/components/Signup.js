@@ -28,6 +28,34 @@ function Signup() {
       .catch((err) => err);
   }, [setApiResponse]);
 
+  function handleSignup(event) {
+    event.preventDefault();
+    setApiResponse({
+      message: '',
+      isLoading: true,
+      isValid: false,
+      isLoggedIn: false,
+    })
+    const formData = new FormData(event.target);
+  
+    fetch('/signup', {
+      method: 'POST',
+      credentials: 'include',
+      body: formData
+    })
+      .then(response => response.json())
+      .then(res => 
+        setApiResponse({
+          message: res.message,
+          isLoading: false,
+          isValid: res.isValid,
+          isLoggedIn: false,
+        }))
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   if (apiResponse.isLoading) {
     return (
       <div className="App">
@@ -46,7 +74,7 @@ function Signup() {
       <div className="register-page">
         <h1 className="register-heading">Sign Up</h1>
         <p className='error message'>{apiResponse.message}</p>
-        <form action="https://eventhorizon.up.railway.app/signup" method="POST" className="register-container">
+        <form action="https://eventhorizon.up.railway.app/signup" method="POST" className="register-container" onSubmit={handleSignup}>
           <label htmlFor="firstname">First Name</label>
           <input
             className="register-input"
