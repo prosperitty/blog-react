@@ -32,7 +32,7 @@ function Logout() {
       </div>
     );
   } else if (!isAuthenticated) {
-    return <Navigate to="/" replace="true" />;
+    return <Navigate to="/login" replace="true" />;
   }
 }
 
