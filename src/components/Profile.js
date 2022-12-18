@@ -62,15 +62,15 @@ function Profile() {
 
   const unpublishedPosts = apiResponse.unpublished_articles.map(
     (post, index) => {
-      let buffer = new Buffer.from(post.image.data.data).toString('base64');
-      let mimetype = post.image.contentType;
+      // let buffer = new Buffer.from(post.image.data.data).toString('base64');
+      // let mimetype = post.image.contentType;
       return (
         <div key={post._id}>
-          <img
+          {/* <img
             alt="article"
             className="latest-image"
             src={`data:${mimetype};base64,${buffer}`}
-          />
+          /> */}
           <p className="latest-post-date">
             <span className="article-user">By {post.user.username}</span>
             <span>&#8226;</span>
@@ -90,15 +90,15 @@ function Profile() {
   );
 
   const publishedPosts = apiResponse.published_articles.map((post, index) => {
-    let buffer = new Buffer.from(post.image.data.data).toString('base64');
-    let mimetype = post.image.contentType;
+    // let buffer = new Buffer.from(post.image.data.data).toString('base64');
+    // let mimetype = post.image.contentType;
     return (
       <div key={post._id}>
-        <img
+        {/* <img
           alt="article"
           className="latest-image"
           src={`data:${mimetype};base64,${buffer}`}
-        />
+        /> */}
         <h4 className="latest-post-title">
           <Link className="nav-link latest-post-title" to={post.url}>
             {post.title}
