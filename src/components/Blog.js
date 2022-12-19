@@ -341,7 +341,7 @@ function Blog() {
         <section>
           <hr></hr>
           <h1>Comments</h1>
-          <CommentForm commentRoute={`https://eventhorizon.up.railway.app/blogs/${blogId}/comments/create`} />
+          <CommentForm commentRoute={`https://eventhorizon.up.railway.app/blogs/${blogId}/comments/create`} blogid={blogId} />
           {commentList}
         </section>
       </div>

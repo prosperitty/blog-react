@@ -1,14 +1,41 @@
 import '../App.css';
 import React, { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 function CommentForm(props) {
   const { isAuthenticated } = useContext(AuthContext);
+  const history = useHistory();
+
+  function handleComment(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = {};
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
+    const jsonData = JSON.stringify(data);
+  
+    fetch(props.commentRoute, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonData
+    })
+      .then(response => response.json())
+      .then(res =>  
+        history.push(`blogs/${props.blogid}`))
+      .catch(error => {
+        console.error(error);
+      });
+  }
 
   if (isAuthenticated) {
     return (
       <div>
-        <form action={props.commentRoute} method="POST">
+        <form action={props.commentRoute} method="POST" onSubmit={handleComment}>
           <div className="comment-field-container">
             {/* <label htmlFor="comment">Comment:</label> */}
             <textarea
