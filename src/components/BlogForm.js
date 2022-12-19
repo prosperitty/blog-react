@@ -10,7 +10,7 @@ function BlogForm() {
   });
 
   useEffect(() => {
-    fetch('https://eventhorizon.up.railway.app/create', {
+    fetch('https://eventhorizon.up.railway.app/blogs/create', {
       mode: 'cors',
       credentials: 'include'
     })
