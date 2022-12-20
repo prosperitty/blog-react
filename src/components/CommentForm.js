@@ -1,14 +1,16 @@
 import '../App.css';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
-import { useHistory } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 function CommentForm(props) {
   const { isAuthenticated } = useContext(AuthContext);
-  const history = useHistory();
+  const [isSubmitting, setisSubmitting] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
   function handleComment(event) {
     event.preventDefault();
+    setisSubmitting(true);
     const formData = new FormData(event.target);
     const data = {};
     formData.forEach((value, key) => {
@@ -25,8 +27,10 @@ function CommentForm(props) {
       body: jsonData
     })
       .then(response => response.json())
-      .then(res =>  
-        history.push(`blogs/${props.blogid}`))
+      .then(res => {
+        setIsValid(res.isValid)
+        setisSubmitting(false);
+      }) 
       .catch(error => {
         console.error(error);
       });
@@ -54,6 +58,14 @@ function CommentForm(props) {
         </form>
       </div>
     );
+  } else if (isAuthenticated && isSubmitting) {
+    return (
+      <div>
+        <p>attempting to submit...</p>
+      </div>
+    );
+  } else if (isAuthenticated && isValid) {
+    return <Navigate to={`blogs/${props.blogid}`} replace="true" />;
   } else {
     return (
       <div>
