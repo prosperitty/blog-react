@@ -68,6 +68,7 @@ function CategoryForm() {
   } else if (isAuthenticated) {
     return (
       <div className="register-page">
+        <p className='error message'>{apiResponse.message}</p>
         <form
           className="register-container"
           action="https://eventhorizon.up.railway.app/category/create"
