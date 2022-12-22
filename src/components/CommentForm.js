@@ -5,31 +5,31 @@ import { AuthContext } from '../Context/AuthContext';
 function CommentForm(props) {
   const { isAuthenticated } = useContext(AuthContext);
 
-  function handleComment(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = {};
-    formData.forEach((value, key) => {
-      data[key] = value;
-    });
-    const jsonData = JSON.stringify(data);
+  // function handleComment(event) {
+  //   event.preventDefault();
+  //   const formData = new FormData(event.target);
+  //   const data = {};
+  //   formData.forEach((value, key) => {
+  //     data[key] = value;
+  //   });
+  //   const jsonData = JSON.stringify(data);
 
-    fetch(props.commentRoute, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonData,
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        props.callAPI();
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
+  //   fetch(props.commentRoute, {
+  //     method: 'POST',
+  //     credentials: 'include',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: jsonData,
+  //   })
+  //     .then((response) => response.json())
+  //     .then((res) => {
+  //       props.callAPI();
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }
 
   if (isAuthenticated) {
     return (
@@ -37,7 +37,7 @@ function CommentForm(props) {
         <form
           action={props.commentRoute}
           method="POST"
-          onSubmit={handleComment}
+          onSubmit={props.submitComment}
         >
           <div className="comment-field-container">
             {/* <label htmlFor="comment">Comment:</label> */}

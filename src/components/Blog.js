@@ -83,10 +83,17 @@ function Blog() {
     }
   }
 
-  async function submitEdit() {
+  async function submitEdit(event) {
     try {
+      event.preventDefault();
       setIsLoading(true);
-      const articleCategory = document.querySelector('#article-category');
+      // const articleCategory = document.querySelector('#article-category');
+      const formData = new FormData(event.target);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+      const jsonData = JSON.stringify(data);
       const response = await fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}`, {
         method: 'PUT',
         mode: 'cors',
@@ -94,13 +101,14 @@ function Blog() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          title: articleTitle,
-          category: articleCategory.value,
-          summary: articleSummary,
-          content: editorContent,
-          isPublished: articleIsPublished,
-        }),
+        body: jsonData,
+        // body: JSON.stringify({
+        //   title: articleTitle,
+        //   category: articleCategory.value,
+        //   summary: articleSummary,
+        //   content: editorContent,
+        //   isPublished: articleIsPublished,
+        // }),
       });
       const res = await response.json();
       console.log('result:', res);
@@ -132,6 +140,39 @@ function Blog() {
       } else if (response.ok) {
         setIsLoading(false);
         return setIsDeleted(true);
+      }
+    } catch (error) {
+      console.error(
+        'There has been a problem with your fetch operation:',
+        error
+      );
+    }
+  }
+
+  async function submitComment(event) {
+    try {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+      const jsonData = JSON.stringify(data);
+  
+      const response = fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}/comments/create`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonData,
+      })
+      const res = await response.json();
+      if (!response.ok) {
+        throw new Error('network response was not ok when submitting comment')
+      } else if (response.ok) {
+        console.log(res.isValid);
+        return callAPI();
       }
     } catch (error) {
       console.error(
@@ -241,7 +282,7 @@ function Blog() {
     return (
       <div className="blog-form-page">
         <h1>Edit Article</h1>
-        <form className="blog-form" action={`https://eventhorizon.up.railway.app/blogs/${blogId}`} encType="multipart/form-data">
+        <form className="blog-form" action={`https://eventhorizon.up.railway.app/blogs/${blogId}`} encType="multipart/form-data" onSubmit={submitEdit}>
           <div>
             <label htmlFor="title">Article Title</label>
             <input
@@ -256,7 +297,7 @@ function Blog() {
           </div>
           {/* <div>
             <label htmlFor="image">Article Image:</label>
-            <input type="file" name="image" />
+            <input type="file" name="image" disabled/>
           </div> */}
           <div>
             <label htmlFor="category">Category</label>
@@ -341,7 +382,7 @@ function Blog() {
         <section>
           <hr></hr>
           <h1>Comments</h1>
-          <CommentForm commentRoute={`https://eventhorizon.up.railway.app/blogs/${blogId}/comments/create`} blogid={blogId} callAPI={callAPI} />
+          <CommentForm commentRoute={`https://eventhorizon.up.railway.app/blogs/${blogId}/comments/create`} blogid={blogId} submitComment={submitComment} />
           {commentList}
         </section>
       </div>
