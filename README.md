@@ -10,7 +10,7 @@ If a user wants to begin writing blogs, or comment below a blog, the user must f
 
 Using React with React Router, the user is able to navigate the app to different routes. Navigating to a route will call the API using fetch which calls the backend URI and returns a response. If creating, updating, or deleting, the client will call the backend server to handle these operations. Authentication is also handled by the backend. 
 
-# Learning Objectives
+## Learning Objectives
 
 - React
 - React Router
@@ -19,6 +19,7 @@ Using React with React Router, the user is able to navigate the app to different
 - Dynamic Pages
 - Buffer 
 - Authentication
+- TinyMCE
 - POST/PUT formData
 - Form Validation
 - Passport.js
