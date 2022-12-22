@@ -87,6 +87,7 @@ function Blog() {
     try {
       setIsLoading(true);
       event.preventDefault();
+      // we're using dom manipulation instead of new formData() because of errors pertaining to the enctype of multipart/formdata
       const articleCategory = document.querySelector('#article-category');
       const response = await fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}`, {
         method: 'PUT',
