@@ -87,13 +87,7 @@ function Blog() {
     try {
       setIsLoading(true);
       event.preventDefault();
-      // const articleCategory = document.querySelector('#article-category');
-      const formData = new FormData(event.target);
-      const data = {};
-      formData.forEach((value, key) => {
-        data[key] = value;
-      });
-      const jsonData = JSON.stringify(data);
+      const articleCategory = document.querySelector('#article-category');
       const response = await fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}`, {
         method: 'PUT',
         mode: 'cors',
@@ -101,14 +95,13 @@ function Blog() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: jsonData,
-        // body: JSON.stringify({
-        //   title: articleTitle,
-        //   category: articleCategory.value,
-        //   summary: articleSummary,
-        //   content: editorContent,
-        //   isPublished: articleIsPublished,
-        // }),
+        body: JSON.stringify({
+          title: articleTitle,
+          category: articleCategory.value,
+          summary: articleSummary,
+          content: editorContent,
+          isPublished: articleIsPublished,
+        }),
       });
       if (!response.ok) {
         throw new Error('network response was not ok');
