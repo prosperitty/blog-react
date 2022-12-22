@@ -85,8 +85,8 @@ function Blog() {
 
   async function submitEdit(event) {
     try {
-      event.preventDefault();
       setIsLoading(true);
+      event.preventDefault();
       // const articleCategory = document.querySelector('#article-category');
       const formData = new FormData(event.target);
       const data = {};
@@ -110,8 +110,6 @@ function Blog() {
         //   isPublished: articleIsPublished,
         // }),
       });
-      const res = await response.json();
-      console.log('result:', res);
       if (!response.ok) {
         throw new Error('network response was not ok');
       } else if (response.ok) {
@@ -151,6 +149,7 @@ function Blog() {
 
   async function submitComment(event) {
     try {
+      setIsLoading(true);
       event.preventDefault();
       const formData = new FormData(event.target);
       const data = {};
@@ -167,11 +166,9 @@ function Blog() {
         },
         body: jsonData,
       })
-      const res = await response.json();
       if (!response.ok) {
         throw new Error('network response was not ok when submitting comment')
       } else if (response.ok) {
-        console.log(res.isValid);
         return callAPI();
       }
     } catch (error) {
