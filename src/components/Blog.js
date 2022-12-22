@@ -159,7 +159,7 @@ function Blog() {
       });
       const jsonData = JSON.stringify(data);
   
-      const response = fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}/comments/create`, {
+      const response = await fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}/comments/create`, {
         method: 'POST',
         credentials: 'include',
         headers: {
