@@ -57,8 +57,8 @@ class Home extends Component {
   }
 
   displayPost(article) {
-    let buffer = new Buffer.from(article.image.data.data).toString('base64');
-    let mimetype = article.image.contentType;
+    // let buffer = new Buffer.from(article.image.data.data).toString('base64');
+    // let mimetype = article.image.contentType;
     return (
       <div key={article._id} className="home-category-article">
         <div className="home-details-container">
