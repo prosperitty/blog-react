@@ -70,13 +70,13 @@ class Home extends Component {
           <p className="home-category-summary">{article.summary}</p>
           <p className="home-category-date">{article.date_formatted}</p>
         </div>
-        <div className="home-image-container">
+        {/* <div className="home-image-container">
           <img
             alt="article"
             className="home-category-image"
             src={`data:${mimetype};base64,${buffer}`}
           />
-        </div>
+        </div> */}
       </div>
     );
   }
