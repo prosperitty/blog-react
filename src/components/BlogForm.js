@@ -120,7 +120,7 @@ function BlogForm() {
               type="select"
               placeholder="Select a Category"
               name="category"
-              defaultValue={article.category._id}
+              defaultValue={article.category}
               required
             >
               <option value="">Select A Category</option>
@@ -140,7 +140,7 @@ function BlogForm() {
           </div>
           <div className="blog-radio">
             <label>Publish Article?</label>
-            <input type="radio" name="isPublished" id="yes" value={true} />
+            <input type="radio" name="isPublished" id="yes" value={true} required/>
             <label className="blog-radio-label" htmlFor="yes">
               yes
             </label>
@@ -222,7 +222,7 @@ function BlogForm() {
           </div>
           <div className="blog-radio">
             <label>Publish Article?</label>
-            <input type="radio" name="isPublished" id="yes" value={true} />
+            <input type="radio" name="isPublished" id="yes" value={true} required />
             <label className="blog-radio-label" htmlFor="yes">
               yes
             </label>
