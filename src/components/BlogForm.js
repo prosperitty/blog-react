@@ -40,16 +40,16 @@ function BlogForm() {
     event.preventDefault();
     setIsLoading(true);
     const formData = new FormData(event.target);
-    const data = {};
-    formData.forEach((value, key) => {
-      data[key] = value;
-    });
+    // const data = {};
+    // formData.forEach((value, key) => {
+    //   data[key] = value;
+    // });
     // const jsonData = JSON.stringify(data);
 
     fetch('https://eventhorizon.up.railway.app/blogs/create', {
       method: 'POST',
       credentials: 'include',
-      body: data,
+      body: formData,
     })
       .then((response) => response.json())
       .then((res) => {
@@ -64,24 +64,11 @@ function BlogForm() {
   }
 
   const categoryList = apiResponse.category_list.map((category, index) => {
-    if (article) {
-      if (article.category.category === category.category) {
-        return (
-          <option key={index} value={category._id} selected={true}>
-            {category.category}
-          </option>
-        );
-      }
-    } else {
       return (
         <option key={index} value={category._id}>
           {category.category}
         </option>
       );
-    }
-    // <option key={index} value={category._id}>
-    //   {category.category}
-    // </option>
   });
 
   if (isLoading) {
@@ -133,6 +120,7 @@ function BlogForm() {
               type="select"
               placeholder="Select a Category"
               name="category"
+              defaultValue={article.category._id}
               required
             >
               <option value="">Select A Category</option>
