@@ -64,12 +64,14 @@ function BlogForm() {
   }
 
   const categoryList = apiResponse.category_list.map((category, index) => {
-    if (article.category.category === category.category) {
-      return (
-        <option key={index} value={category._id} selected={true}>
-          {category.category}
-        </option>
-      );
+    if (article) {
+      if (article.category.category === category.category) {
+        return (
+          <option key={index} value={category._id} selected={true}>
+            {category.category}
+          </option>
+        );
+      }
     } else {
       return (
         <option key={index} value={category._id}>
