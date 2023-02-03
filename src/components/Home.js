@@ -20,7 +20,7 @@ class Home extends Component {
       credentials: 'include'
     })
       .then((res) => res.json())
-      .then((res) => this.setState({ apiResponse: res }))
+      .then((res) => this.setState({ apiResponse: res, isLoading: false }))
       .catch((err) => err);
   }
 
