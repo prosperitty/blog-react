@@ -143,15 +143,15 @@ function Category() {
   }
 
   const posts = apiResponse.category_list.slice(1).map((post, index) => {
-    let buffer = new Buffer.from(post.image.data.data).toString('base64');
-    let mimetype = post.image.contentType;
+    // let buffer = new Buffer.from(post.image.data.data).toString('base64');
+    // let mimetype = post.image.contentType;
     return (
       <div key={post._id}>
-        <img
+        {/* <img
           alt="article"
           className="latest-image"
           src={`data:${mimetype};base64,${buffer}`}
-        />
+        /> */}
         <p className="latest-post-date">
           <span className="article-user">By {post.user.username}</span>
           <span>&#8226;</span>
