@@ -28,6 +28,7 @@ function Category() {
       });
       const res = await response.json();
       setApiResponse({
+        latest_article: res.latest_article,
         category_list: res.category_list,
         category: res.category,
         error: res.error,
@@ -143,15 +144,15 @@ function Category() {
   }
 
   const posts = apiResponse.category_list.slice(1).map((post, index) => {
-    let buffer = new Buffer.from(post.image.data.data).toString('base64');
-    let mimetype = post.image.contentType;
+    // let buffer = new Buffer.from(post.image.data.data).toString('base64');
+    // let mimetype = post.image.contentType;
     return (
       <div key={post._id}>
-        <img
+        {/* <img
           alt="article"
           className="latest-image"
           src={`data:${mimetype};base64,${buffer}`}
-        />
+        /> */}
         <p className="latest-post-date">
           <span className="article-user">By {post.user.username}</span>
           <span>&#8226;</span>
@@ -219,7 +220,7 @@ function Category() {
             Read articles related to {apiResponse.category.category} and
             discover the most recent blogs
           </p>
-          {displayLatestArticle(apiResponse.category_list[0])}
+          {displayLatestArticle(apiResponse.latest_article)}
         </header>
         <hr></hr>
         <section className="latest-posts-container">

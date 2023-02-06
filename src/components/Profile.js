@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Buffer } from 'buffer';
+// import { Buffer } from 'buffer';
 import { Link } from 'react-router-dom';
 import logo from '../logo.svg';
 import '../App.css';
