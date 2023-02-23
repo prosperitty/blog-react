@@ -82,7 +82,7 @@ class Home extends Component {
   }
 
   render() {
-    if (this.state.apiResponse.isLoading) {
+    if (this.state.isLoading) {
       return (
         <div className="App">
           <header className="App-header">
