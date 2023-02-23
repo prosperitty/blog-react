@@ -21,7 +21,7 @@ function BlogForm() {
   }, []);
 
   function callAPI() {
-    fetch('https://eventhorizon.up.railway.app/blogs/create', {
+    fetch('https://event-horizon.onrender.com/blogs/create', {
       mode: 'cors',
       credentials: 'include',
     })
@@ -46,7 +46,7 @@ function BlogForm() {
     // });
     // const jsonData = JSON.stringify(data);
 
-    fetch('https://eventhorizon.up.railway.app/blogs/create', {
+    fetch('https://event-horizon.onrender.com/blogs/create', {
       method: 'POST',
       credentials: 'include',
       body: formData,
@@ -88,7 +88,7 @@ function BlogForm() {
         <h1>{apiResponse.header}</h1>
         <form
           className="blog-form"
-          action="https://eventhorizon.up.railway.app/blogs/create"
+          action="https://event-horizon.onrender.com/blogs/create"
           encType="multipart/form-data"
           method="POST"
           onSubmit={submitArticle}
@@ -172,7 +172,7 @@ function BlogForm() {
         <h1>{apiResponse.header}</h1>
         <form
           className="blog-form"
-          action="https://eventhorizon.up.railway.app/blogs/create"
+          action="https://event-horizon.onrender.com/blogs/create"
           encType="multipart/form-data"
           method="POST"
           onSubmit={submitArticle}
@@ -250,7 +250,7 @@ function BlogForm() {
         <h1>{apiResponse.header}</h1>
         <form
           className="blog-form"
-          action="https://eventhorizon.up.railway.app/blogs/create"
+          action="https://event-horizon.onrender.com/blogs/create"
           encType="multipart/form-data"
           method="POST"
         >

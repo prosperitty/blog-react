@@ -10,7 +10,7 @@ function Login() {
   });
 
   useEffect(() => {
-    fetch('https://eventhorizon.up.railway.app/login', {
+    fetch('https://event-horizon.onrender.com/login', {
       mode: 'cors',
       credentials: 'include'
     })
@@ -42,7 +42,7 @@ function Login() {
     return (
       <div className="register-page">
         <h1 className="register-heading">Login</h1>
-        <form action="https://eventhorizon.up.railway.app/login" method="POST" className="register-container">
+        <form action="https://event-horizon.onrender.com/login" method="POST" className="register-container">
           <label htmlFor="username">Username</label>
           <input
             className="register-input"

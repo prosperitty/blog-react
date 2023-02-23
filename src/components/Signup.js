@@ -12,7 +12,7 @@ function Signup() {
   });
 
   useEffect(() => {
-    fetch('https://eventhorizon.up.railway.app/signup', {
+    fetch('https://event-horizon.onrender.com/signup', {
       mode: 'cors',
       credentials: 'include',
     })
@@ -43,7 +43,7 @@ function Signup() {
     });
     const jsonData = JSON.stringify(data);
   
-    fetch('https://eventhorizon.up.railway.app/signup', {
+    fetch('https://event-horizon.onrender.com/signup', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -82,7 +82,7 @@ function Signup() {
       <div className="register-page">
         <h1 className="register-heading">Sign Up</h1>
         <p className='error message'>{apiResponse.message}</p>
-        <form action="https://eventhorizon.up.railway.app/signup" method="POST" className="register-container" onSubmit={handleSignup}>
+        <form action="https://event-horizon.onrender.com/signup" method="POST" className="register-container" onSubmit={handleSignup}>
           <label htmlFor="firstname">First Name</label>
           <input
             className="register-input"

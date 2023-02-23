@@ -15,7 +15,7 @@ class Home extends Component {
   }
 
   callAPI() {
-    fetch('https://eventhorizon.up.railway.app/', {
+    fetch('https://event-horizon.onrender.com/', {
       mode: 'cors',
       credentials: 'include'
     })

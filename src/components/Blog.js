@@ -35,7 +35,7 @@ function Blog() {
   }, [blogId]);
 
   function callAPI() {
-    fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}`, {
+    fetch(`https://event-horizon.onrender.com/blogs/${blogId}`, {
       mode: 'cors',
       credentials: 'include'
     })
@@ -89,7 +89,7 @@ function Blog() {
       event.preventDefault();
       // we're using dom manipulation instead of new formData() because of errors pertaining to the enctype of multipart/formdata
       const articleCategory = document.querySelector('#article-category');
-      const response = await fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}`, {
+      const response = await fetch(`https://event-horizon.onrender.com/blogs/${blogId}`, {
         method: 'PUT',
         mode: 'cors',
         credentials: 'include',
@@ -122,7 +122,7 @@ function Blog() {
   async function deleteArticle() {
     try {
       setIsLoading(true);
-      const response = await fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}`, {
+      const response = await fetch(`https://event-horizon.onrender.com/blogs/${blogId}`, {
         method: 'DELETE',
         credentials: 'include',
         mode: 'cors',
@@ -152,7 +152,7 @@ function Blog() {
       });
       const jsonData = JSON.stringify(data);
   
-      const response = await fetch(`https://eventhorizon.up.railway.app/blogs/${blogId}/comments/create`, {
+      const response = await fetch(`https://event-horizon.onrender.com/blogs/${blogId}/comments/create`, {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -273,7 +273,7 @@ function Blog() {
     return (
       <div className="blog-form-page">
         <h1>Edit Article</h1>
-        <form className="blog-form" action={`https://eventhorizon.up.railway.app/blogs/${blogId}`} encType="multipart/form-data" onSubmit={submitEdit}>
+        <form className="blog-form" action={`https://event-horizon.onrender.com/blogs/${blogId}`} encType="multipart/form-data" onSubmit={submitEdit}>
           <div>
             <label htmlFor="title">Article Title</label>
             <input
@@ -373,7 +373,7 @@ function Blog() {
         <section>
           <hr></hr>
           <h1>Comments</h1>
-          <CommentForm commentRoute={`https://eventhorizon.up.railway.app/blogs/${blogId}/comments/create`} blogid={blogId} submitComment={submitComment} />
+          <CommentForm commentRoute={`https://event-horizon.onrender.com/blogs/${blogId}/comments/create`} blogid={blogId} submitComment={submitComment} />
           {commentList}
         </section>
       </div>

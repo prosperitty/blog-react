@@ -15,7 +15,7 @@ function CategoryForm() {
   }, []);
 
   function callAPI() {
-    fetch('https://eventhorizon.up.railway.app/category/create', {
+    fetch('https://event-horizon.onrender.com/category/create', {
       mode: 'cors',
       credentials: 'include',
     })
@@ -33,7 +33,7 @@ function CategoryForm() {
     });
     const jsonData = JSON.stringify(data);
 
-    fetch('https://eventhorizon.up.railway.app/category/create', {
+    fetch('https://event-horizon.onrender.com/category/create', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -71,7 +71,7 @@ function CategoryForm() {
         <p className='error message'>{apiResponse.message}</p>
         <form
           className="register-container"
-          action="https://eventhorizon.up.railway.app/category/create"
+          action="https://event-horizon.onrender.com/category/create"
           method="POST"
           onSubmit={submitCategory}
         >
@@ -94,7 +94,7 @@ function CategoryForm() {
       <div className="register-page">
         <form
           className="register-container"
-          action="https://eventhorizon.up.railway.app/category/create"
+          action="https://event-horizon.onrender.com/category/create"
           method="POST"
         >
           <label htmlFor="category">Category</label>

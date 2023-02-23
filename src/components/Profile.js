@@ -20,7 +20,7 @@ function Profile() {
   }, []);
 
   function callAPI() {
-    fetch('https://eventhorizon.up.railway.app/users/profile', {
+    fetch('https://event-horizon.onrender.com/users/profile', {
       mode: 'cors',
       credentials: 'include',
     })
