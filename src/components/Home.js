@@ -8,9 +8,8 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      apiResponse: {
-        isLoading: true,
-      },
+      apiResponse: {},
+      isLoading: true,
     };
   }
 
@@ -20,7 +19,8 @@ class Home extends Component {
       credentials: 'include'
     })
       .then((res) => res.json())
-      .then((res) => this.setState({ apiResponse: res, isLoading: false }))
+      .then((res) => this.setState({ apiResponse: res }))
+      .then(() => this.setState({ isLoading: false }))
       .catch((err) => err);
   }
 
