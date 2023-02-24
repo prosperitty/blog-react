@@ -29,31 +29,44 @@ class Home extends Component {
   }
 
   displayMainArticle(article) {
-    let buffer = new Buffer.from(article.image.data.data).toString('base64');
-    let mimetype = article.image.contentType;
-    return (
-      <div key={article._id} className="main-article">
-        <div className="main-black-gradient">
-          <div className="main-details-container">
-            <p className="category-tag">{article.category.category}</p>
-            <p className="latest-post-date">
-              <span className="article-user">By {article.user.username}</span>
-              <span>&#8226;</span>
-              <span className="article-date">{article.date_formatted}</span>
-            </p>
-            <Link className="nav-link main-title" to={article.url}>
-              <h4>{article.title}</h4>
-            </Link>
-            <p>{article.summary}</p>
+    if (article === null) {
+      return console.log('article returned null');
+    } else {
+      console.log(article._id,'article title')
+      //aggregate result changes output to javascript object instead of model object. no need to convert image data to string (base64) anymore since it outputs string already?
+      let buffer = new Buffer.from(article.image.data);
+      let mimetype = article.image.contentType;
+      const options = {
+        year: "numeric",
+        month: "long", 
+        day: "numeric",
+      }
+      const url = '/blogs/' + article._id;
+      const date = new Date(article.date).toLocaleDateString("en-US", options)
+      return (
+        <div key={article._id} className="main-article">
+          <div className="main-black-gradient">
+            <div className="main-details-container">
+              <p className="category-tag">{article.category.category}</p>
+              <p className="latest-post-date">
+                <span className="article-user">By {article.user.username}</span>
+                <span>&#8226;</span>
+                <span className="article-date">{date}</span>
+              </p>
+              <Link className="nav-link main-title" to={url}>
+                <h4>{article.title}</h4>
+              </Link>
+              <p>{article.summary}</p>
+            </div>
+            <img
+              alt="article"
+              className="main-image"
+              src={`data:${mimetype};base64,${buffer}`}
+            />
           </div>
-          <img
-            alt="article"
-            className="main-image"
-            src={`data:${mimetype};base64,${buffer}`}
-          />
         </div>
-      </div>
-    );
+      );
+    }
   }
 
   displayPost(article) {

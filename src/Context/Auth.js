@@ -2,7 +2,7 @@ const Auth = {
   isAuthenticated: async function isAuthenticated() {
     return await fetch('https://event-horizon.onrender.com/users/authenticated', {credentials: "include"})
       .then((res) => {
-        if (res.status === 401) {
+        if (res.status !== 200) {
           return { isAuthenticated: false };
         } else {
           return res.json();
