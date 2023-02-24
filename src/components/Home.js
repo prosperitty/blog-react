@@ -32,9 +32,9 @@ class Home extends Component {
     if (article === null) {
       return console.log('article returned null');
     } else {
-      console.log(article._id,'article title')
+      console.log(article.image,'article title')
       //aggregate result changes output to javascript object instead of model object. no need to convert image data to string (base64) anymore since it outputs string already?
-      let buffer = new Buffer.from(article.image.data);
+      let buffer = new Buffer.from(article.image.data).toString('base64');
       let mimetype = article.image.contentType;
       const options = {
         year: "numeric",
