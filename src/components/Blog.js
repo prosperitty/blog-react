@@ -325,6 +325,7 @@ function Blog() {
               id="article-content"
               onChange={handleEditorChange}
               initialValue={apiResponse.article.content}
+              init={{plugins: ['link']}}
             />
           </div>
           <div>

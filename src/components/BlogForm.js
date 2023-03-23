@@ -233,7 +233,7 @@ function BlogForm() {
           </div>
           <div>
             <label htmlFor="content">Content</label>
-            <Editor textareaName="content" required />
+            <Editor textareaName="content" init={{plugins: ['link']}} required />
             {/* <textarea name="content" rows="10" placeholder="content" required></textarea> */}
           </div>
           <div>
