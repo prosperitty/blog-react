@@ -1,6 +1,6 @@
 # Blog Client (Front End)
 
-This is the frontend clientside codebase for the blog app. Technology used includes React, React Hooks, React Router, and TinyMCE text editor. Hosting by [Railway](https://railway.app). 
+This is the frontend clientside codebase for the blog app. Technology used includes React, React Hooks, React Router, and TinyMCE text editor. Hosting by [Railway](https://railway.app). Backend API repository [here](https://github.com/alex-lvl/blog-api?)
 
 ## Functionality
 
