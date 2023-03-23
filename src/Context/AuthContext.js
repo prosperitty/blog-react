@@ -12,7 +12,6 @@ function Authenticate({ children }) {
   useEffect(() => {
     Auth.isAuthenticated()
     .then((data) => {
-      console.log(data.isAuthenticated)
       setIsAuthenticated(data.isAuthenticated);
       setIsLoading(false);
     })
