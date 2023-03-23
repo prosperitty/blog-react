@@ -22,7 +22,7 @@ function App() {
 
   //basename sets url to homepage route set in package.json
   return (
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter basename='/'>
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
