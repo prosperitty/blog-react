@@ -94,6 +94,8 @@ nav {
 .logo {
   text-decoration: none;
   color: #0b0a07;
+  display: flex;
+  align-items: center;
 }
 
 .nav-link {
