@@ -1,10 +1,12 @@
 # Blog Client (Front End)
 
-This is the frontend clientside codebase for the blog app. Technology used includes React, React Hooks, React Router, and TinyMCE text editor. Hosting by [Railway](https://railway.app). Backend API repository [here](https://github.com/alex-lvl/blog-api?)
+This is the frontend clientside codebase for the blog app. Technology used includes React, React Hooks, React Router, and TinyMCE text editor. Hosting by [Railway](https://railway.app). 
+
+Backend API repository [here](https://github.com/alex-lvl/blog-api?).
 
 ## Functionality
 
-The main functionality of this blog app is to allow users to call the blog API to create articles, comments, or categories if they are authenticated. Articles and comments use the basic operations of CRUD. Users are only allowed to create categories for now. 
+The main functionality of this frontend client is to utilize the backend API to handle various tasks. The frontend utilizes the backend to authenticate users when registering or logging in, CRUD operations, query for data in the database, and form validation/upload.
 
 If a user wants to begin writing blogs, or comment below a blog, the user must first create an account. Once registered, the user should be authenticated with passport.js to begin using the app. Users are allowed to sign out if chosen to.
 
