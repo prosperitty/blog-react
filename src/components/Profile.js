@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../logo.svg';
 import '../App.css';
+import  API_URL from '../config';
 
 function Profile() {
   const [apiResponse, setApiResponse] = useState({
@@ -20,7 +21,7 @@ function Profile() {
   }, []);
 
   function callAPI() {
-    fetch('https://event-horizon.onrender.com/users/profile', {
+    fetch(`${API_URL}/users/profile`, {
       mode: 'cors',
       credentials: 'include',
     })

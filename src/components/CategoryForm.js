@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
 import '../App.css';
 import logo from '../logo.svg';
+import  API_URL from '../config';
 
 function CategoryForm() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -15,7 +16,7 @@ function CategoryForm() {
   }, []);
 
   function callAPI() {
-    fetch('https://event-horizon.onrender.com/category/create', {
+    fetch(`${API_URL}/category/create`, {
       mode: 'cors',
       credentials: 'include',
     })
@@ -33,7 +34,7 @@ function CategoryForm() {
     });
     const jsonData = JSON.stringify(data);
 
-    fetch('https://event-horizon.onrender.com/category/create', {
+    fetch(`${API_URL}/category/create`, {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -71,7 +72,7 @@ function CategoryForm() {
         <p className='error message'>{apiResponse.message}</p>
         <form
           className="register-container"
-          action="https://event-horizon.onrender.com/category/create"
+          action={`${API_URL}/category/create`}
           method="POST"
           onSubmit={submitCategory}
         >
@@ -94,7 +95,7 @@ function CategoryForm() {
       <div className="register-page">
         <form
           className="register-container"
-          action="https://event-horizon.onrender.com/category/create"
+          action={`${API_URL}/category/create`}
           method="POST"
         >
           <label htmlFor="category">Category</label>

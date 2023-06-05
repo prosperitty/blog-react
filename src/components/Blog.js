@@ -7,7 +7,7 @@ import logo from '../logo.svg';
 import '../App.css';
 import CommentForm from './CommentForm';
 import { AuthContext } from '../Context/AuthContext';
-
+import API_URL from '../config';
 
 function Blog() {
   const [apiResponse, setApiResponse] = useState({
@@ -35,9 +35,9 @@ function Blog() {
   }, [blogId]);
 
   function callAPI() {
-    fetch(`https://event-horizon.onrender.com/blogs/${blogId}`, {
+    fetch(`${API_URL}/blogs/${blogId}`, {
       mode: 'cors',
-      credentials: 'include'
+      credentials: 'include',
     })
       .then((res) => res.json())
       .then((res) => {
@@ -89,7 +89,7 @@ function Blog() {
       event.preventDefault();
       // we're using dom manipulation instead of new formData() because of errors pertaining to the enctype of multipart/formdata
       const articleCategory = document.querySelector('#article-category');
-      const response = await fetch(`https://event-horizon.onrender.com/blogs/${blogId}`, {
+      const response = await fetch(`${API_URL}/blogs/${blogId}`, {
         method: 'PUT',
         mode: 'cors',
         credentials: 'include',
@@ -123,7 +123,7 @@ function Blog() {
   async function deleteArticle() {
     try {
       setIsLoading(true);
-      const response = await fetch(`https://event-horizon.onrender.com/blogs/${blogId}`, {
+      const response = await fetch(`${API_URL}/blogs/${blogId}`, {
         method: 'DELETE',
         credentials: 'include',
         mode: 'cors',
@@ -152,17 +152,20 @@ function Blog() {
         data[key] = value;
       });
       const jsonData = JSON.stringify(data);
-  
-      const response = await fetch(`https://event-horizon.onrender.com/blogs/${blogId}/comments/create`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonData,
-      })
+
+      const response = await fetch(
+        `${API_URL}/blogs/${blogId}/comments/create`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: jsonData,
+        }
+      );
       if (!response.ok) {
-        throw new Error('network response was not ok when submitting comment')
+        throw new Error('network response was not ok when submitting comment');
       } else if (response.ok) {
         return callAPI();
       }
@@ -182,30 +185,31 @@ function Blog() {
 
   function displayEditAndDeleteBtn() {
     if (apiResponse.user === undefined || !isAuthenticated) {
-      return (
-        <div></div>
-      )
-    } else if (apiResponse.user._id === apiResponse.article.user._id && isAuthenticated) {
+      return <div></div>;
+    } else if (
+      apiResponse.user._id === apiResponse.article.user._id &&
+      isAuthenticated
+    ) {
       return (
         <div>
-             <button className="btn-edit btn" onClick={editArticle}>
-              edit
-            </button>
-            <button className="btn-delete btn" onClick={deleteArticle}>
-              Delete
-            </button>
+          <button className='btn-edit btn' onClick={editArticle}>
+            edit
+          </button>
+          <button className='btn-delete btn' onClick={deleteArticle}>
+            Delete
+          </button>
         </div>
-      )
+      );
     }
   }
 
   //does not work when apiresponse.comments is undefined
   //works when apiResponse.comments has an empty array
   const commentList = apiResponse.comments.map((comment, index) => (
-    <div key={index} className="comment-container">
+    <div key={index} className='comment-container'>
       <p>
-        <span className="comment-user">{comment.user.username}</span>
-        <span className="comment-date">{comment.date_formatted}</span>
+        <span className='comment-user'>{comment.user.username}</span>
+        <span className='comment-date'>{comment.date_formatted}</span>
       </p>
       <p>{comment.comment}</p>
     </div>
@@ -232,12 +236,12 @@ function Blog() {
       return (
         <div>
           <input
-            type="checkbox"
-            name="isPublished"
+            type='checkbox'
+            name='isPublished'
             onClick={handleCheckboxChange}
             value={false}
           ></input>
-          <label className="blog-radio-label" htmlFor="isPublished">
+          <label className='blog-radio-label' htmlFor='isPublished'>
             Unpublish
           </label>
         </div>
@@ -246,12 +250,12 @@ function Blog() {
       return (
         <div>
           <input
-            type="checkbox"
-            name="isPublished"
+            type='checkbox'
+            name='isPublished'
             onClick={handleCheckboxChange}
             value={true}
           ></input>
-          <label className="blog-radio-label" htmlFor="isPublished">
+          <label className='blog-radio-label' htmlFor='isPublished'>
             Publish
           </label>
         </div>
@@ -261,28 +265,33 @@ function Blog() {
 
   if (isLoading) {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className='App'>
+        <header className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />
           <p>Loading...</p>
         </header>
       </div>
     );
   } else if (isDeleted) {
-    return <Navigate to="/blogs" replace="true" />;
+    return <Navigate to='/blogs' replace='true' />;
   } else if (isEditing) {
     return (
-      <div className="blog-form-page">
+      <div className='blog-form-page'>
         <h1>Edit Article</h1>
-        <form className="blog-form" action={`https://event-horizon.onrender.com/blogs/${blogId}`} encType="multipart/form-data" onSubmit={submitEdit}>
+        <form
+          className='blog-form'
+          action={`${API_URL}/blogs/${blogId}`}
+          encType='multipart/form-data'
+          onSubmit={submitEdit}
+        >
           <div>
-            <label htmlFor="title">Article Title</label>
+            <label htmlFor='title'>Article Title</label>
             <input
-              className="blog-input-text"
-              type="text"
-              placeholder="article title"
-              id="article-title"
-              name="title"
+              className='blog-input-text'
+              type='text'
+              placeholder='article title'
+              id='article-title'
+              name='title'
               onChange={handleTitleChange}
               defaultValue={articleTitle}
             />
@@ -292,46 +301,46 @@ function Blog() {
             <input type="file" name="image" disabled/>
           </div> */}
           <div>
-            <label htmlFor="category">Category</label>
+            <label htmlFor='category'>Category</label>
             <select
-              className="blog-input-select"
-              type="select"
-              placeholder="Select a Category"
-              id="article-category"
-              name="category"
+              className='blog-input-select'
+              type='select'
+              placeholder='Select a Category'
+              id='article-category'
+              name='category'
               defaultValue={apiResponse.article.category._id}
             >
-              <option value="">Select A Category</option>
+              <option value=''>Select A Category</option>
               {categoryOptions}
             </select>
           </div>
           <div>
-            <label htmlFor="summary">Summary</label>
+            <label htmlFor='summary'>Summary</label>
             <textarea
-              className="blog-input-area"
-              name="summary"
-              rows="3"
-              placeholder="summary"
-              id="article-summary"
+              className='blog-input-area'
+              name='summary'
+              rows='3'
+              placeholder='summary'
+              id='article-summary'
               onChange={handleSummaryChange}
               defaultValue={apiResponse.article.summary}
             ></textarea>
           </div>
           {publishButton()}
           <div>
-            <label htmlFor="content">Content</label>
+            <label htmlFor='content'>Content</label>
             <Editor
-              textareaName="content"
-              id="article-content"
+              textareaName='content'
+              id='article-content'
               onChange={handleEditorChange}
               initialValue={apiResponse.article.content}
-              init={{plugins: ['link']}}
+              init={{ plugins: ['link'] }}
             />
           </div>
           <div>
             <button
-              className="register-button blog-button"
-              type="submit"
+              className='register-button blog-button'
+              type='submit'
               onClick={submitEdit}
             >
               Submit
@@ -342,40 +351,44 @@ function Blog() {
     );
   } else {
     return (
-      <div className="App article-page">
+      <div className='App article-page'>
         <article>
-          <header className="article-header">
-            <p className="category-tag">
+          <header className='article-header'>
+            <p className='category-tag'>
               {apiResponse.article.category.category}
             </p>
             <h1>{apiResponse.article.title}</h1>
-            <p className="article-summary">{apiResponse.article.summary}</p>
-            <p className="article-date-user">
-              <span className="article-user">
+            <p className='article-summary'>{apiResponse.article.summary}</p>
+            <p className='article-date-user'>
+              <span className='article-user'>
                 By {apiResponse.article.user.username}
               </span>
               <span>&#8226;</span>
-              <span className="article-date">
+              <span className='article-date'>
                 {apiResponse.article.date_formatted}
               </span>
             </p>
             {displayEditAndDeleteBtn()}
           </header>
           <img
-            alt="article"
-            className="main-image"
-            src={renderImage(apiResponse.article)}
+            alt='article'
+            className='main-image'
+            src={apiResponse.article.image.secure_url}
           />
 
           <main
-            className="article-content"
+            className='article-content'
             dangerouslySetInnerHTML={{ __html: apiResponse.article.content }}
           ></main>
         </article>
         <section>
           <hr></hr>
           <h1>Comments</h1>
-          <CommentForm commentRoute={`https://event-horizon.onrender.com/blogs/${blogId}/comments/create`} blogid={blogId} submitComment={submitComment} />
+          <CommentForm
+            commentRoute={`${API_URL}/blogs/${blogId}/comments/create`}
+            blogid={blogId}
+            submitComment={submitComment}
+          />
           {commentList}
         </section>
       </div>

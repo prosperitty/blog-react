@@ -4,6 +4,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
 import '../App.css';
+import API_URL from '../config';
 
 function BlogForm() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -21,7 +22,7 @@ function BlogForm() {
   }, []);
 
   function callAPI() {
-    fetch('https://event-horizon.onrender.com/blogs/create', {
+    fetch(`${API_URL}/blogs/create`, {
       mode: 'cors',
       credentials: 'include',
     })
@@ -46,7 +47,7 @@ function BlogForm() {
     // });
     // const jsonData = JSON.stringify(data);
 
-    fetch('https://event-horizon.onrender.com/blogs/create', {
+    fetch(`${API_URL}/blogs/create`, {
       method: 'POST',
       credentials: 'include',
       body: formData,
@@ -57,6 +58,7 @@ function BlogForm() {
         setArticle(res.article);
         setBlogURL(res.blogURL);
         setIsLoading(false);
+        // console.log('CLOUDINARY PHOTO URL IS==============',res.secure_url);
       })
       .catch((error) => {
         console.error(error);
@@ -64,102 +66,108 @@ function BlogForm() {
   }
 
   const categoryList = apiResponse.category_list.map((category, index) => {
-      return (
-        <option key={index} value={category._id}>
-          {category.category}
-        </option>
-      );
+    return (
+      <option key={index} value={category._id}>
+        {category.category}
+      </option>
+    );
   });
 
   if (isLoading) {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className='App'>
+        <header className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />
           <p>Loading...</p>
         </header>
       </div>
     );
   } else if (isValid) {
-    return <Navigate to={blogURL} replace="true" />;
+    return <Navigate to={blogURL} replace='true' />;
   } else if (article && isAuthenticated) {
     return (
-      <div className="blog-form-page">
+      <div className='blog-form-page'>
         <h1>{apiResponse.header}</h1>
         <form
-          className="blog-form"
-          action="https://event-horizon.onrender.com/blogs/create"
-          encType="multipart/form-data"
-          method="POST"
+          className='blog-form'
+          action={`${API_URL}/blogs/create`}
+          encType='multipart/form-data'
+          method='POST'
           onSubmit={submitArticle}
         >
           <div>
-            <label htmlFor="title">Title:</label>
+            <label htmlFor='title'>Title:</label>
             <input
-              className="blog-input-text"
-              type="text"
-              placeholder="article title"
-              name="title"
+              className='blog-input-text'
+              type='text'
+              placeholder='article title'
+              name='title'
               required
               defaultValue={article.title}
             />
           </div>
           <div>
-            <label htmlFor="image">Image</label>
+            <label htmlFor='image'>Image</label>
             <input
-              className="blog-input-text"
-              type="file"
-              name="image"
+              className='blog-input-text'
+              type='file'
+              name='image'
               required
             />
           </div>
           <div>
-            <label htmlFor="category">Category</label>
+            <label htmlFor='category'>Category</label>
             <select
-              className="blog-input-select"
-              type="select"
-              placeholder="Select a Category"
-              name="category"
+              className='blog-input-select'
+              type='select'
+              placeholder='Select a Category'
+              name='category'
               defaultValue={article.category}
               required
             >
-              <option value="">Select A Category</option>
+              <option value=''>Select A Category</option>
               {categoryList}
             </select>
           </div>
           <div>
-            <label htmlFor="summary">Summary</label>
+            <label htmlFor='summary'>Summary</label>
             <textarea
-              className="blog-input-area"
-              name="summary"
-              rows="3"
-              placeholder="summary"
+              className='blog-input-area'
+              name='summary'
+              rows='3'
+              placeholder='summary'
               defaultValue={article.summary}
               required
             ></textarea>
           </div>
-          <div className="blog-radio">
+          <div className='blog-radio'>
             <label>Publish Article?</label>
-            <input type="radio" name="isPublished" id="yes" value={true} required/>
-            <label className="blog-radio-label" htmlFor="yes">
+            <input
+              type='radio'
+              name='isPublished'
+              id='yes'
+              value={true}
+              required
+            />
+            <label className='blog-radio-label' htmlFor='yes'>
               yes
             </label>
-            <input type="radio" name="isPublished" id="no" value={false} />
-            <label className="blog-radio-label" htmlFor="no">
+            <input type='radio' name='isPublished' id='no' value={false} />
+            <label className='blog-radio-label' htmlFor='no'>
               no
             </label>
           </div>
           <div>
-            <label htmlFor="content">Content</label>
+            <label htmlFor='content'>Content</label>
             <Editor
-              textareaName="content"
+              textareaName='content'
               initialValue={article.content}
               required
             />
             {/* <textarea name="content" rows="10" placeholder="content" required></textarea> */}
           </div>
           <div>
-            <button className="register-button blog-button" type="submit">
+            <button className='register-button blog-button' type='submit'>
               submit
             </button>
           </div>
@@ -168,76 +176,86 @@ function BlogForm() {
     );
   } else if (isAuthenticated) {
     return (
-      <div className="blog-form-page">
+      <div className='blog-form-page'>
         <h1>{apiResponse.header}</h1>
         <form
-          className="blog-form"
-          action="https://event-horizon.onrender.com/blogs/create"
-          encType="multipart/form-data"
-          method="POST"
+          className='blog-form'
+          action={`${API_URL}/blogs/create`}
+          encType='multipart/form-data'
+          method='POST'
           onSubmit={submitArticle}
         >
           <div>
-            <label htmlFor="title">Title:</label>
+            <label htmlFor='title'>Title:</label>
             <input
-              className="blog-input-text"
-              type="text"
-              placeholder="article title"
-              name="title"
+              className='blog-input-text'
+              type='text'
+              placeholder='article title'
+              name='title'
               required
               // value="article.title"
             />
           </div>
           <div>
-            <label htmlFor="image">Image</label>
+            <label htmlFor='image'>Image</label>
             <input
-              className="blog-input-text"
-              type="file"
-              name="image"
+              className='blog-input-text'
+              type='file'
+              name='image'
               required
             />
           </div>
           <div>
-            <label htmlFor="category">Category</label>
+            <label htmlFor='category'>Category</label>
             <select
-              className="blog-input-select"
-              type="select"
-              placeholder="Select a Category"
-              name="category"
+              className='blog-input-select'
+              type='select'
+              placeholder='Select a Category'
+              name='category'
               required
             >
-              <option value="">Select A Category</option>
+              <option value=''>Select A Category</option>
               {categoryList}
             </select>
           </div>
           <div>
-            <label htmlFor="summary">Summary</label>
+            <label htmlFor='summary'>Summary</label>
             <textarea
-              className="blog-input-area"
-              name="summary"
-              rows="3"
-              placeholder="summary"
+              className='blog-input-area'
+              name='summary'
+              rows='3'
+              placeholder='summary'
               required
             ></textarea>
           </div>
-          <div className="blog-radio">
+          <div className='blog-radio'>
             <label>Publish Article?</label>
-            <input type="radio" name="isPublished" id="yes" value={true} required />
-            <label className="blog-radio-label" htmlFor="yes">
+            <input
+              type='radio'
+              name='isPublished'
+              id='yes'
+              value={true}
+              required
+            />
+            <label className='blog-radio-label' htmlFor='yes'>
               yes
             </label>
-            <input type="radio" name="isPublished" id="no" value={false} />
-            <label className="blog-radio-label" htmlFor="no">
+            <input type='radio' name='isPublished' id='no' value={false} />
+            <label className='blog-radio-label' htmlFor='no'>
               no
             </label>
           </div>
           <div>
-            <label htmlFor="content">Content</label>
-            <Editor textareaName="content" init={{plugins: ['link']}} required />
+            <label htmlFor='content'>Content</label>
+            <Editor
+              textareaName='content'
+              init={{ plugins: ['link'] }}
+              required
+            />
             {/* <textarea name="content" rows="10" placeholder="content" required></textarea> */}
           </div>
           <div>
-            <button className="register-button blog-button" type="submit">
+            <button className='register-button blog-button' type='submit'>
               submit
             </button>
           </div>
@@ -246,75 +264,87 @@ function BlogForm() {
     );
   } else {
     return (
-      <div className="blog-form-page">
+      <div className='blog-form-page'>
         <h1>{apiResponse.header}</h1>
         <form
-          className="blog-form"
-          action="https://event-horizon.onrender.com/blogs/create"
-          encType="multipart/form-data"
-          method="POST"
+          className='blog-form'
+          action={`${API_URL}/blogs/create`}
+          encType='multipart/form-data'
+          method='POST'
         >
           <div>
-            <label htmlFor="title">Title:</label>
+            <label htmlFor='title'>Title:</label>
             <input
-              className="blog-input-text"
-              type="text"
-              placeholder="article title"
-              name="title"
+              className='blog-input-text'
+              type='text'
+              placeholder='article title'
+              name='title'
               disabled
               // value="article.title"
             />
           </div>
           <div>
-            <label htmlFor="image">Image</label>
+            <label htmlFor='image'>Image</label>
             <input
-              className="blog-input-text"
-              type="file"
-              name="image"
+              className='blog-input-text'
+              type='file'
+              name='image'
               disabled
             />
           </div>
           <div>
-            <label htmlFor="category">Category</label>
+            <label htmlFor='category'>Category</label>
             <select
-              className="blog-input-select"
-              type="select"
-              placeholder="Select a Category"
-              name="category"
+              className='blog-input-select'
+              type='select'
+              placeholder='Select a Category'
+              name='category'
               disabled
             >
-              <option value="">Select A Category</option>
+              <option value=''>Select A Category</option>
               {categoryList}
             </select>
           </div>
           <div>
-            <label htmlFor="summary">Summary</label>
+            <label htmlFor='summary'>Summary</label>
             <textarea
-              className="blog-input-area"
-              name="summary"
-              rows="3"
-              placeholder="summary"
+              className='blog-input-area'
+              name='summary'
+              rows='3'
+              placeholder='summary'
               disabled
             ></textarea>
           </div>
-          <div className="blog-radio">
+          <div className='blog-radio'>
             <label>Publish Article?</label>
-            <input type="radio" name="isPublished" id="yes" value={true} disabled />
-            <label className="blog-radio-label" htmlFor="yes">
+            <input
+              type='radio'
+              name='isPublished'
+              id='yes'
+              value={true}
+              disabled
+            />
+            <label className='blog-radio-label' htmlFor='yes'>
               yes
             </label>
-            <input type="radio" name="isPublished" id="no" value={false} disabled />
-            <label className="blog-radio-label" htmlFor="no">
+            <input
+              type='radio'
+              name='isPublished'
+              id='no'
+              value={false}
+              disabled
+            />
+            <label className='blog-radio-label' htmlFor='no'>
               no
             </label>
           </div>
           <div>
-            <label htmlFor="content">Content</label>
-            <Editor textareaName="content" disabled />
+            <label htmlFor='content'>Content</label>
+            <Editor textareaName='content' disabled />
             {/* <textarea name="content" rows="10" placeholder="content" required></textarea> */}
           </div>
           <div>
-            <button className="register-button blog-button" type="submit">
+            <button className='register-button blog-button' type='submit'>
               submit
             </button>
           </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import logo from '../logo.svg';
 import '../App.css';
 import { Navigate } from 'react-router-dom';
+import  API_URL from '../config';
 
 function Signup() {
   const [apiResponse, setApiResponse] = useState({
@@ -12,7 +13,7 @@ function Signup() {
   });
 
   useEffect(() => {
-    fetch('https://event-horizon.onrender.com/signup', {
+    fetch(`${API_URL}/signup`, {
       mode: 'cors',
       credentials: 'include',
     })
@@ -43,7 +44,7 @@ function Signup() {
     });
     const jsonData = JSON.stringify(data);
   
-    fetch('https://event-horizon.onrender.com/signup', {
+    fetch(`${API_URL}/signup`, {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -82,7 +83,7 @@ function Signup() {
       <div className="register-page">
         <h1 className="register-heading">Sign Up</h1>
         <p className='error message'>{apiResponse.message}</p>
-        <form action="https://event-horizon.onrender.com/signup" method="POST" className="register-container" onSubmit={handleSignup}>
+        <form action={`${API_URL}/signup`} method="POST" className="register-container" onSubmit={handleSignup}>
           <label htmlFor="firstname">First Name</label>
           <input
             className="register-input"

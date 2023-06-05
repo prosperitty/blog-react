@@ -1,6 +1,8 @@
+import API_URL from "../config";
+
 const Auth = {
   isAuthenticated: async function isAuthenticated() {
-    return await fetch('https://event-horizon.onrender.com/users/authenticated', {credentials: "include"})
+    return await fetch(`${API_URL}/users/authenticated`, {credentials: "include"})
       .then((res) => {
         if (res.status !== 200) {
           return { isAuthenticated: false };
@@ -11,7 +13,7 @@ const Auth = {
       .catch((err) => err);
   },
   logout: async function logout() {
-    return await fetch('https://event-horizon.onrender.com/users/logout', {
+    return await fetch(`${API_URL}/users/logout`, {
       credentials: 'include'
     })
     .then(res => {

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import logo from '../logo.svg';
 import '../App.css';
 import { Link } from 'react-router-dom';
+import  API_URL from '../config';
 
 function CategoryList() {
   const [apiResponse, setApiResponse] = useState({
@@ -12,7 +13,7 @@ function CategoryList() {
 
   async function callAPI() {
     try {
-      const response = await fetch('https://event-horizon.onrender.com/category', {
+      const response = await fetch(`${API_URL}/category`, {
         mode: 'cors',
         credentials: 'include'
       });

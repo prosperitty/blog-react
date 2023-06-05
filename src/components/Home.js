@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Buffer } from 'buffer';
 import logo from '../logo.svg';
 import '../App.css';
+import API_URL from '../config';
 
 class Home extends Component {
   constructor(props) {
@@ -14,9 +15,9 @@ class Home extends Component {
   }
 
   callAPI() {
-    fetch('https://event-horizon.onrender.com/', {
-      mode: 'cors',
-      credentials: 'include'
+    fetch(`${API_URL}` || 'http://localhost:8080', {
+      // mode: 'cors',
+      // credentials: 'include'
     })
       .then((res) => res.json())
       .then((res) => this.setState({ apiResponse: res }))
@@ -34,8 +35,8 @@ class Home extends Component {
     } else {
       console.log(article._id,'article title')
       //aggregate result changes output to javascript object instead of model object. no need to convert image data to string (base64) anymore since it outputs string already?
-      let buffer = new Buffer.from(article.image.data);
-      let mimetype = article.image.contentType;
+      // let buffer = new Buffer.from(article.image.data);
+      // let mimetype = article.image.contentType;
       const options = {
         year: "numeric",
         month: "long", 
@@ -61,7 +62,7 @@ class Home extends Component {
             <img
               alt="article"
               className="main-image"
-              src={`data:${mimetype};base64,${buffer}`}
+              src={article.image.secure_url}
             />
           </div>
         </div>
@@ -83,13 +84,13 @@ class Home extends Component {
           <p className="home-category-summary">{article.summary}</p>
           <p className="home-category-date">{article.date_formatted}</p>
         </div>
-        {/* <div className="home-image-container">
+        <div className="home-image-container">
           <img
             alt="article"
             className="home-category-image"
-            src={`data:${mimetype};base64,${buffer}`}
+            src={article.image.secure_url}
           />
-        </div> */}
+        </div>
       </div>
     );
   }

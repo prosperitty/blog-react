@@ -4,6 +4,7 @@ import logo from '../logo.svg';
 import { Buffer } from 'buffer';
 import '../App.css';
 import { Link, Navigate } from 'react-router-dom';
+import  API_URL from '../config';
 
 function Category() {
   const [apiResponse, setApiResponse] = useState({
@@ -22,7 +23,7 @@ function Category() {
 
   async function callAPI() {
     try {
-      const response = await fetch(`https://event-horizon.onrender.com/category/${categoryId}`, {
+      const response = await fetch(`${API_URL}/category/${categoryId}`, {
         mode: 'cors',
         credentials: 'include'
       });
@@ -48,7 +49,7 @@ function Category() {
     try {
       setIsLoading(true);
       const categoryName = document.querySelector('#category-name');
-      const response = await fetch(`https://event-horizon.onrender.com/category/${categoryId}`, {
+      const response = await fetch(`${API_URL}/category/${categoryId}`, {
         method: 'PUT',
         mode: 'cors',
         headers: {
@@ -76,7 +77,7 @@ function Category() {
   async function deleteCategory() {
     try {
       setIsLoading(true);
-      const response = await fetch(`https://event-horizon.onrender.com/category/${categoryId}`, {
+      const response = await fetch(`${API_URL}/category/${categoryId}`, {
         method: 'DELETE',
         mode: 'cors',
       });
@@ -112,15 +113,15 @@ function Category() {
   // });
 
   function displayLatestArticle(article) {
-    let buffer = new Buffer.from(article.image.data.data).toString('base64');
-    let mimetype = article.image.contentType;
+    // let buffer = new Buffer.from(article.image.data.data).toString('base64');
+    // let mimetype = article.image.contentType;
     return (
       <div key={article._id} className="main-article">
         <div className="main-black-gradient">
           <img
             alt="article"
             className="main-image"
-            src={`data:${mimetype};base64,${buffer}`}
+            src={article.image.secure_url}
           />
         </div>
         <div className="latest-header-article-container">
@@ -148,11 +149,11 @@ function Category() {
     // let mimetype = post.image.contentType;
     return (
       <div key={post._id}>
-        {/* <img
+        <img
           alt="article"
           className="latest-image"
-          src={`data:${mimetype};base64,${buffer}`}
-        /> */}
+          src={post.image.secure_url}
+          />
         <p className="latest-post-date">
           <span className="article-user">By {post.user.username}</span>
           <span>&#8226;</span>
@@ -185,7 +186,7 @@ function Category() {
   } else if (isEditing) {
     return (
       <div className="App">
-        <form action={`https://event-horizon.onrender.com/category/${categoryId}`} method="">
+        <form action={`${API_URL}/category/${categoryId}`} method="">
           <div>
             <label htmlFor="category">Category:</label>
             <input
