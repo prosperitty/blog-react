@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import logo from '../logo.svg';
-import { Editor } from '@tinymce/tinymce-react';
+// import { Editor } from '@tinymce/tinymce-react';
 import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
 import '../App.css';
@@ -159,12 +159,17 @@ function BlogForm() {
           </div>
           <div>
             <label htmlFor='content'>Content</label>
-            <Editor
+            {/* <Editor
               textareaName='content'
               initialValue={article.content}
               required
-            />
-            {/* <textarea name="content" rows="10" placeholder="content" required></textarea> */}
+            /> */}
+            <textarea
+              name='content'
+              rows='10'
+              placeholder='content'
+              required
+            ></textarea>
           </div>
           <div>
             <button className='register-button blog-button' type='submit'>
@@ -247,12 +252,17 @@ function BlogForm() {
           </div>
           <div>
             <label htmlFor='content'>Content</label>
-            <Editor
+            {/* <Editor
               textareaName='content'
               init={{ plugins: ['link'] }}
               required
-            />
-            {/* <textarea name="content" rows="10" placeholder="content" required></textarea> */}
+            /> */}
+            <textarea
+              name='content'
+              rows='10'
+              placeholder='content'
+              required
+            ></textarea>
           </div>
           <div>
             <button className='register-button blog-button' type='submit'>
@@ -340,8 +350,13 @@ function BlogForm() {
           </div>
           <div>
             <label htmlFor='content'>Content</label>
-            <Editor textareaName='content' disabled />
-            {/* <textarea name="content" rows="10" placeholder="content" required></textarea> */}
+            {/* <Editor textareaName='content' disabled /> */}
+            <textarea
+              name='content'
+              rows='10'
+              placeholder='content'
+              required
+            ></textarea>
           </div>
           <div>
             <button className='register-button blog-button' type='submit'>
