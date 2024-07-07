@@ -355,7 +355,7 @@ function BlogForm() {
               name='content'
               rows='10'
               placeholder='content'
-              required
+              disabled
             ></textarea>
           </div>
           <div>
