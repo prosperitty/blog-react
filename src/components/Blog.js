@@ -329,13 +329,22 @@ function Blog() {
           {publishButton()}
           <div>
             <label htmlFor='content'>Content</label>
-            <Editor
+            {/* <Editor
               textareaName='content'
               id='article-content'
               onChange={handleEditorChange}
               initialValue={apiResponse.article.content}
               init={{ plugins: ['link'] }}
-            />
+            /> */}
+            <textarea
+              name='content'
+              id='article-content'
+              onChange={handleEditorChange}
+              initialValue={apiResponse.article.content}
+              rows='10'
+              placeholder='content'
+              required
+            ></textarea>
           </div>
           <div>
             <button
